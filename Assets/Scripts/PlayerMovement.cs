@@ -29,16 +29,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (rb.velocity.magnitude > 0)
-        {
-            // Player is moving
-            animator.SetBool("isMoving", true);
-        }
-        else
-        {
-            animator.SetBool("isMoving", false);
+        bool isMoving = rb.velocity.magnitude > 0;
 
-        }
+        animator.SetBool("isMoving", isMoving);
+     
         float inputX = Input.GetAxisRaw("Horizontal");
         float inputZ = Input.GetAxisRaw("Vertical");
         animator.SetFloat("Move X", inputX);
