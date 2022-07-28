@@ -1,14 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] float speed = 10f;
+    bool isRolling;
     Animator animator;
     Vector3 moveInput;
     Rigidbody rb;
-    [SerializeField] Transform playerSpine;
 
     private void Awake()
     {
@@ -25,14 +24,23 @@ public class PlayerMovement : MonoBehaviour
         {
             transform.LookAt(new Vector3(_hit.point.x, transform.position.y, _hit.point.z));
         }
+
+        StartCoroutine(HandleRoll());
     }
 
     private void FixedUpdate()
     {
+        HandleMovement();
+    }
+
+    void HandleMovement()
+    {
+
+        if (isRolling) return;
         bool isMoving = rb.velocity.magnitude > 0;
 
         animator.SetBool("isMoving", isMoving);
-     
+
         float inputX = Input.GetAxisRaw("Horizontal");
         float inputZ = Input.GetAxisRaw("Vertical");
         animator.SetFloat("Move X", inputX);
@@ -40,9 +48,23 @@ public class PlayerMovement : MonoBehaviour
 
         moveInput.Set(inputX, rb.velocity.y, inputZ);
         moveInput.Normalize();
-    
 
         rb.velocity = moveInput * speed;
+    }
+
+    IEnumerator HandleRoll()
+    {
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Debug.Log("sono qui");
+
+            isRolling = true;
+            rb.velocity += moveInput * speed;
+
+            animator.SetTrigger("Roll");
+        }
+        yield return new WaitForEndOfFrame();
 
     }
 }
