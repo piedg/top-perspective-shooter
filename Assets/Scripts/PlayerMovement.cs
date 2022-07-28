@@ -3,8 +3,9 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] float speed = 10f;
-    bool isRolling;
+    [SerializeField] float runSpeed = 10f;
+    [SerializeField] float rollSpeed = 1f;
+    bool isRolling = false;
     Animator animator;
     Vector3 moveInput;
     Rigidbody rb;
@@ -20,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
         RaycastHit _hit;
         Ray _ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        if(Physics.Raycast(_ray, out _hit))
+        if (Physics.Raycast(_ray, out _hit))
         {
             transform.LookAt(new Vector3(_hit.point.x, transform.position.y, _hit.point.z));
         }
@@ -49,24 +50,32 @@ public class PlayerMovement : MonoBehaviour
         moveInput.Set(inputX, rb.velocity.y, inputZ);
         moveInput.Normalize();
 
-        rb.velocity = moveInput * speed;
+        rb.velocity = moveInput * runSpeed;
     }
 
-    IEnumerator HandleRoll()
-    {
 
-        if (Input.GetKeyDown(KeyCode.Space))
+
+    IEnumerator HandleRoll()
+    { 
+        Vector3 previousPosition = transform.position;
+
+        if (Input.GetKeyDown(KeyCode.Space) && !isRolling)
         {
-            Debug.Log("sono qui "+ isRolling );
+            Vector3 currentDirection = (transform.position-previousPosition).normalized;
 
             isRolling = true;
-            rb.velocity = moveInput * speed;
 
             animator.SetTrigger("Roll");
 
+            rb.velocity += currentDirection * this.rollSpeed;
+
             yield return new WaitForSeconds(1f);
             isRolling = false;
+
         }
-        yield return new WaitForEndOfFrame();
+
     }
+
+
+
 }
