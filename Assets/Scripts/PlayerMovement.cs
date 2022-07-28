@@ -57,12 +57,15 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Debug.Log("sono qui");
+            Debug.Log("sono qui "+ isRolling );
 
             isRolling = true;
-            rb.velocity += moveInput * speed;
+            rb.velocity = moveInput * speed;
 
             animator.SetTrigger("Roll");
+
+            yield return new WaitForSeconds(1f);
+            isRolling = false;
         }
         yield return new WaitForEndOfFrame();
 
