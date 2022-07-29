@@ -5,7 +5,9 @@ using UnityEngine;
 public class Character : MonoBehaviour
 {
     public float speed;
-    bool isRolling; 
+    bool isRolling;
+
+    public GameObject CharacterModel;
     
     Animator animator;
     CharacterController controller;
@@ -27,15 +29,7 @@ public class Character : MonoBehaviour
         animator.SetFloat("Horizontal", horizontal);
         animator.SetFloat("Vertical", vertical);
 
-     
-
-        RaycastHit _hit;
-        Ray _ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-        if (Physics.Raycast(_ray, out _hit))
-        {
-            transform.LookAt(new Vector3(_hit.point.x, transform.position.y, _hit.point.z));
-        }
+        FollowMousePosition();
 
         if(Input.GetKeyDown(KeyCode.Space) && !isRolling)
         {
@@ -47,7 +41,10 @@ public class Character : MonoBehaviour
     {
         Vector3 velocity = animator.deltaPosition;
 
+        Debug.Log(velocity);
+
         controller.Move(velocity * speed * Time.deltaTime);
+        
     }
 
     IEnumerator Roll()
@@ -58,5 +55,16 @@ public class Character : MonoBehaviour
         animator.SetBool("isRolling", false);
         isRolling = false;
 
+    }
+
+    void FollowMousePosition()
+    {
+        RaycastHit _hit;
+        Ray _ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        if (Physics.Raycast(_ray, out _hit))
+        {
+            CharacterModel.transform.LookAt(new Vector3(_hit.point.x, transform.position.y, _hit.point.z));
+        }
     }
 }
