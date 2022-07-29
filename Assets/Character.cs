@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
-    private float originalStepOffset;
     public float speed;
+    bool isRolling; 
     
     Animator animator;
     CharacterController controller;
@@ -14,7 +14,6 @@ public class Character : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         controller = GetComponent<CharacterController>();
-        originalStepOffset = controller.stepOffset;
     }
 
     // Update is called once per frame
@@ -38,7 +37,7 @@ public class Character : MonoBehaviour
             transform.LookAt(new Vector3(_hit.point.x, transform.position.y, _hit.point.z));
         }
 
-        if(Input.GetKeyDown(KeyCode.Space))
+        if(Input.GetKeyDown(KeyCode.Space) && !isRolling)
         {
             StartCoroutine(Roll());
         }
@@ -53,9 +52,11 @@ public class Character : MonoBehaviour
 
     IEnumerator Roll()
     {
+        isRolling = true;
         animator.SetBool("isRolling", true);
         yield return new WaitForSeconds(0.8f);
         animator.SetBool("isRolling", false);
+        isRolling = false;
 
     }
 }
