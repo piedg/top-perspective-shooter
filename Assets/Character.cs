@@ -6,19 +6,18 @@ public class Character : MonoBehaviour
 {
     public float speed;
     bool isRolling;
-
+    Vector3 movementDirection;
     public GameObject CharacterModel;
-    
+
     Animator animator;
     CharacterController controller;
-    // Start is called before the first frame update
+
     void Start()
     {
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
         controller = GetComponent<CharacterController>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         float horizontal = Input.GetAxis("Horizontal");
@@ -29,20 +28,17 @@ public class Character : MonoBehaviour
         animator.SetFloat("Horizontal", horizontal);
         animator.SetFloat("Vertical", vertical);
 
-        FollowMousePosition();
-
         if(Input.GetKeyDown(KeyCode.Space) && !isRolling)
         {
             StartCoroutine(Roll());
         }
+
+        FollowMousePosition();
     }
 
     private void OnAnimatorMove()
     {
         Vector3 velocity = animator.deltaPosition;
-
-        Debug.Log(velocity);
-
         controller.Move(velocity * speed * Time.deltaTime);
         
     }
@@ -54,7 +50,6 @@ public class Character : MonoBehaviour
         yield return new WaitForSeconds(0.8f);
         animator.SetBool("isRolling", false);
         isRolling = false;
-
     }
 
     void FollowMousePosition()
@@ -64,7 +59,8 @@ public class Character : MonoBehaviour
 
         if (Physics.Raycast(_ray, out _hit))
         {
-            CharacterModel.transform.LookAt(new Vector3(_hit.point.x, transform.position.y, _hit.point.z));
+            //CharacterModel.transform.LookAt(new Vector3(_hit.point.x, transform.position.y, _hit.point.z));
+            transform.LookAt(new Vector3(_hit.point.x, transform.position.y, _hit.point.z));
         }
     }
 }
