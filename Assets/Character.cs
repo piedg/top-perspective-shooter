@@ -6,6 +6,7 @@ public class Character : MonoBehaviour
 {
     public float speed;
     public float rollSpeed;
+    public float rollRate = 0.8f;
     bool isRolling;
 
     Vector3 move;
@@ -27,16 +28,18 @@ public class Character : MonoBehaviour
 
     void Update()
     {
+
+        if (isRolling) return;
+
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
       
         move = vertical * Vector3.forward + horizontal * Vector3.right;
 
-        if(Input.GetKeyDown(KeyCode.Space) && !isRolling)
+        if (Input.GetKeyDown(KeyCode.Space) && !isRolling)
         {
             StartCoroutine(Roll());
         }
-
 
         Move(move);
         FollowMousePosition();
@@ -68,41 +71,32 @@ public class Character : MonoBehaviour
     {
         animator.SetFloat("Forward", forwardAmount);
         animator.SetFloat("Turn", turnAmount);
+
+        animator.SetBool("isRolling", isRolling);
     }
 
     private void OnAnimatorMove()
     {
+
         Vector3 velocity = animator.deltaPosition;
 
-        if(isRolling)
+        Vector3 direction = move;
+
+        if (isRolling)
         {
-            Vector3 direction = move;
-            CharacterModel.transform.rotation = Quaternion.Lerp(CharacterModel.transform.rotation, Quaternion.LookRotation(direction), 2f * Time.deltaTime);
-            if (direction == Vector3.zero)
-            {
-                controller.Move(transform.forward * rollSpeed * Time.deltaTime);
-                return;
-            }
-            else
-            {
-                controller.Move(direction * rollSpeed * Time.deltaTime);
-                return;
-            }
+            controller.Move(direction.normalized * velocity.magnitude * rollSpeed * Time.deltaTime);
+            CharacterModel.transform.rotation = Quaternion.Lerp(CharacterModel.transform.rotation, Quaternion.LookRotation(direction), 5f * Time.deltaTime);
         }
         else
         {
             controller.Move(velocity * speed * Time.deltaTime);
-            return;
         }
-
     }
 
     IEnumerator Roll()
     {
         isRolling = true;
-        animator.SetBool("isRolling", true);
-        yield return new WaitForSeconds(0.8f);
-        animator.SetBool("isRolling", false);
+        yield return new WaitForSeconds(rollRate);
         isRolling = false;
     }
 
