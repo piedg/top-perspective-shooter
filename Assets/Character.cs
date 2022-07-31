@@ -6,7 +6,16 @@ public class Character : MonoBehaviour
 {
     public float speed;
     bool isRolling;
-    Vector3 movementDirection;
+
+    Vector3 lookPos;
+    Transform _cam;
+    Vector3 camForward;
+    Vector3 move;
+    Vector3 moveInput;
+
+    float forwardAmount;
+    float turnAmount;
+
     public GameObject CharacterModel;
 
     Animator animator;
@@ -16,6 +25,8 @@ public class Character : MonoBehaviour
     {
         animator = GetComponentInChildren<Animator>();
         controller = GetComponent<CharacterController>();
+
+        _cam = Camera.main.transform;
     }
 
     void Update()
@@ -23,17 +34,57 @@ public class Character : MonoBehaviour
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
-        Vector3 movementDirection = new Vector3(horizontal, 0, vertical);
+        if(_cam != null)
+        {
+            camForward = Vector3.Scale(_cam.up, new Vector3(1, 0, 1)).normalized;
+            move = vertical * camForward + horizontal * _cam.right;
+        }
+        else
+        {
+            move = vertical * Vector3.forward + horizontal * Vector3.right;
+        }
 
-        animator.SetFloat("Horizontal", horizontal);
-        animator.SetFloat("Vertical", vertical);
+        if(move.magnitude > 1)
+        {
+            move.Normalize();
+        }
+
+        Move(move);
 
         if(Input.GetKeyDown(KeyCode.Space) && !isRolling)
         {
             StartCoroutine(Roll());
         }
 
-        FollowMousePosition();
+         FollowMousePosition();
+    }
+
+    void Move(Vector3 move)
+    {
+        if(move.magnitude > 1)
+        {
+            move.Normalize();
+        }
+
+        this.moveInput = move;
+
+        ConvertMoveInput();
+        UpdateAnimator();
+        
+    }
+
+    void ConvertMoveInput()
+    {
+        Vector3 localMove = transform.InverseTransformDirection(moveInput);
+        turnAmount = localMove.x;
+
+        forwardAmount = localMove.z;
+    }
+
+    void UpdateAnimator()
+    {
+        animator.SetFloat("Forward", forwardAmount, 0.1f, Time.deltaTime);
+        animator.SetFloat("Turn", turnAmount, 0.1f, Time.deltaTime);
     }
 
     private void OnAnimatorMove()

@@ -8,7 +8,6 @@ public class GridManager : MonoBehaviour
     public int width = 9, height = 5;
 
     [SerializeField] private GameObject tile;
-    [SerializeField] private float cameraOffsetX = 0.5f, cameraOffsetY = 0.5f;
     void Start()
     {
         for (float x = 0; x < width * 1f; x += 1f)
