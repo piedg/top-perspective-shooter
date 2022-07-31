@@ -39,15 +39,6 @@ public class Character : MonoBehaviour
             camForward = Vector3.Scale(_cam.up, new Vector3(1, 0, 1)).normalized;
             move = vertical * camForward + horizontal * _cam.right;
         }
-        else
-        {
-            move = vertical * Vector3.forward + horizontal * Vector3.right;
-        }
-
-        if(move.magnitude > 1)
-        {
-            move.Normalize();
-        }
 
         Move(move);
 
@@ -61,11 +52,6 @@ public class Character : MonoBehaviour
 
     void Move(Vector3 move)
     {
-        if(move.magnitude > 1)
-        {
-            move.Normalize();
-        }
-
         this.moveInput = move;
 
         ConvertMoveInput();
@@ -83,8 +69,8 @@ public class Character : MonoBehaviour
 
     void UpdateAnimator()
     {
-        animator.SetFloat("Forward", forwardAmount, 0.1f, Time.deltaTime);
-        animator.SetFloat("Turn", turnAmount, 0.1f, Time.deltaTime);
+        animator.SetFloat("Forward", forwardAmount);
+        animator.SetFloat("Turn", turnAmount);
     }
 
     private void OnAnimatorMove()
