@@ -76,21 +76,25 @@ public class Character : MonoBehaviour
 
         if(isRolling)
         {
-            if(Mathf.Approximately(move.x, 0) && Mathf.Approximately(move.z, 0))
+            Vector3 direction = move;
+            CharacterModel.transform.rotation = Quaternion.Lerp(CharacterModel.transform.rotation, Quaternion.LookRotation(direction), 2f * Time.deltaTime);
+            if (direction == Vector3.zero)
             {
-                controller.Move(velocity * speed * Time.deltaTime);
+                controller.Move(transform.forward * rollSpeed * Time.deltaTime);
+                return;
             }
             else
             {
-                controller.Move(move * rollSpeed * Time.deltaTime);
+                controller.Move(direction * rollSpeed * Time.deltaTime);
+                return;
             }
         }
         else
         {
             controller.Move(velocity * speed * Time.deltaTime);
+            return;
         }
 
-        Debug.Log("MOVE " + move + " VELOCITY" + velocity);
     }
 
     IEnumerator Roll()
@@ -110,6 +114,10 @@ public class Character : MonoBehaviour
         if (Physics.Raycast(_ray, out _hit))
         {
             transform.LookAt(new Vector3(_hit.point.x, transform.position.y, _hit.point.z));
+            if(!isRolling)
+            {
+                CharacterModel.transform.LookAt(Vector3.Lerp(CharacterModel.transform.position, new Vector3(_hit.point.x, transform.position.y, _hit.point.z), 0.5f * Time.deltaTime));
+            }
         }
     }
 }
