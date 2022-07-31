@@ -7,9 +7,6 @@ public class Character : MonoBehaviour
     public float speed;
     bool isRolling;
 
-    Vector3 lookPos;
-    Transform _cam;
-    Vector3 camForward;
     Vector3 move;
     Vector3 moveInput;
 
@@ -25,29 +22,22 @@ public class Character : MonoBehaviour
     {
         animator = GetComponentInChildren<Animator>();
         controller = GetComponent<CharacterController>();
-
-        _cam = Camera.main.transform;
     }
 
     void Update()
     {
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
-
-        if(_cam != null)
-        {
-            camForward = Vector3.Scale(_cam.up, new Vector3(1, 0, 1)).normalized;
-            move = vertical * camForward + horizontal * _cam.right;
-        }
-
-        Move(move);
+      
+        move = vertical * Vector3.forward + horizontal * Vector3.right;
 
         if(Input.GetKeyDown(KeyCode.Space) && !isRolling)
         {
             StartCoroutine(Roll());
         }
 
-         FollowMousePosition();
+        Move(move);
+        FollowMousePosition();
     }
 
     void Move(Vector3 move)
@@ -62,8 +52,8 @@ public class Character : MonoBehaviour
     void ConvertMoveInput()
     {
         Vector3 localMove = transform.InverseTransformDirection(moveInput);
-        turnAmount = localMove.x;
 
+        turnAmount = localMove.x;
         forwardAmount = localMove.z;
     }
 
