@@ -95,7 +95,7 @@ public class Character : MonoBehaviour
     IEnumerator Roll()
     {
         isRolling = true;
-        yield return new WaitForSecondsRealtime(rollRate);
+        yield return new WaitForSeconds(rollRate);
         isRolling = false;
     }
 
