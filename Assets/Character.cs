@@ -28,8 +28,7 @@ public class Character : MonoBehaviour
 
     void Update()
     {
-
-        if (isRolling) return;
+        if (isRolling) { return; }
 
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
@@ -43,6 +42,7 @@ public class Character : MonoBehaviour
 
         Move(move);
         FollowMousePosition();
+        UpdateAnimator();
     }
 
     void Move(Vector3 move)
@@ -55,7 +55,6 @@ public class Character : MonoBehaviour
         this.moveInput = move;
 
         ConvertMoveInput();
-        UpdateAnimator();
         
     }
 
@@ -82,21 +81,21 @@ public class Character : MonoBehaviour
 
         Vector3 direction = move;
 
-        if (isRolling)
+        if (!isRolling || direction == Vector3.zero)
         {
-            controller.Move(direction.normalized * velocity.magnitude * rollSpeed * Time.deltaTime);
-            CharacterModel.transform.rotation = Quaternion.Lerp(CharacterModel.transform.rotation, Quaternion.LookRotation(direction), 5f * Time.deltaTime);
+            controller.Move(velocity * speed * Time.deltaTime);
         }
         else
         {
-            controller.Move(velocity * speed * Time.deltaTime);
+            controller.Move(direction.normalized * velocity.magnitude * rollSpeed * Time.deltaTime);
+            CharacterModel.transform.rotation = Quaternion.Lerp(CharacterModel.transform.rotation, Quaternion.LookRotation(direction), 5f * Time.deltaTime);
         }
     }
 
     IEnumerator Roll()
     {
         isRolling = true;
-        yield return new WaitForSeconds(rollRate);
+        yield return new WaitForSecondsRealtime(rollRate);
         isRolling = false;
     }
 
@@ -110,7 +109,7 @@ public class Character : MonoBehaviour
             transform.LookAt(new Vector3(_hit.point.x, transform.position.y, _hit.point.z));
             if(!isRolling)
             {
-                CharacterModel.transform.LookAt(Vector3.Lerp(CharacterModel.transform.position, new Vector3(_hit.point.x, transform.position.y, _hit.point.z), 0.5f * Time.deltaTime));
+               CharacterModel.transform.LookAt(Vector3.Lerp(CharacterModel.transform.position, new Vector3(_hit.point.x, transform.position.y, _hit.point.z), Time.deltaTime));
             }
         }
     }

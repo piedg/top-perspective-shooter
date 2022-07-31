@@ -318,6 +318,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 100
   rollSpeed: 100
+  rollRate: 0.7
   CharacterModel: {fileID: 1193809580}
 --- !u!95 &253765848
 Animator:
