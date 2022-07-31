@@ -5,6 +5,7 @@ using UnityEngine;
 public class Character : MonoBehaviour
 {
     public float speed;
+    public float rollSpeed;
     bool isRolling;
 
     Vector3 move;
@@ -36,12 +37,18 @@ public class Character : MonoBehaviour
             StartCoroutine(Roll());
         }
 
+
         Move(move);
         FollowMousePosition();
     }
 
     void Move(Vector3 move)
     {
+        if(move.magnitude > 1)
+        {
+            move.Normalize();
+        }
+
         this.moveInput = move;
 
         ConvertMoveInput();
@@ -66,8 +73,24 @@ public class Character : MonoBehaviour
     private void OnAnimatorMove()
     {
         Vector3 velocity = animator.deltaPosition;
-        controller.Move(velocity * speed * Time.deltaTime);
-        
+
+        if(isRolling)
+        {
+            if(Mathf.Approximately(move.x, 0) && Mathf.Approximately(move.z, 0))
+            {
+                controller.Move(velocity * speed * Time.deltaTime);
+            }
+            else
+            {
+                controller.Move(move * rollSpeed * Time.deltaTime);
+            }
+        }
+        else
+        {
+            controller.Move(velocity * speed * Time.deltaTime);
+        }
+
+        Debug.Log("MOVE " + move + " VELOCITY" + velocity);
     }
 
     IEnumerator Roll()
@@ -86,7 +109,6 @@ public class Character : MonoBehaviour
 
         if (Physics.Raycast(_ray, out _hit))
         {
-            //CharacterModel.transform.LookAt(new Vector3(_hit.point.x, transform.position.y, _hit.point.z));
             transform.LookAt(new Vector3(_hit.point.x, transform.position.y, _hit.point.z));
         }
     }
