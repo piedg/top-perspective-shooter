@@ -316,7 +316,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b66f424bb98a04873a753c9a79b5f02b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 50
+  speed: 100
   CharacterModel: {fileID: 1193809580}
 --- !u!95 &253765848
 Animator:
@@ -1067,8 +1067,6 @@ MonoBehaviour:
   width: 100
   height: 100
   tile: {fileID: 1378604800360721959, guid: 2eafbc699f73c4bed9b7d7c98f8a271e, type: 3}
-  cameraOffsetX: 0.5
-  cameraOffsetY: 0.5
 --- !u!4 &1147845473
 Transform:
   m_ObjectHideFlags: 0
