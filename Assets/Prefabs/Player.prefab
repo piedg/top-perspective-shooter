@@ -1475,6 +1475,9 @@ MonoBehaviour:
   <DefaultRotationSpeed>k__BackingField: 5
   <DodgeDuration>k__BackingField: 0.75
   <DodgeForce>k__BackingField: 5
+  <FirePoint>k__BackingField: {fileID: 549440675699536008}
+  <FireRate>k__BackingField: 0.25
+  <ProjectilePool>k__BackingField: {fileID: 0}
   <CharacterModel>k__BackingField: {fileID: 549440676513868566}
 --- !u!114 &6386026016918638786
 MonoBehaviour:
@@ -2413,6 +2416,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff6df204b03ab41cda20f9a07283965f, type: 3}
+--- !u!4 &549440675699536008 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4690976712403689507, guid: ff6df204b03ab41cda20f9a07283965f, type: 3}
+  m_PrefabInstance: {fileID: 5096301358207406251}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &554175958442513412 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4686390190209238191, guid: ff6df204b03ab41cda20f9a07283965f, type: 3}
