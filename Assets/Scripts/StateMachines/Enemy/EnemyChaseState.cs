@@ -13,7 +13,7 @@ public class EnemyChasingState : EnemyBaseState
     public EnemyChasingState(EnemyStateMachine stateMachine) : base(stateMachine) { }
     public override void Enter()
     {
-        //stateMachine.Animator.CrossFadeInFixedTime(LocomotionHash, CrossFadeduration);
+        stateMachine.Animator.CrossFadeInFixedTime(LocomotionHash, CrossFadeduration);
     }
 
     public override void Tick(float deltaTime)
@@ -23,22 +23,18 @@ public class EnemyChasingState : EnemyBaseState
             stateMachine.SwitchState(new EnemyIdleState(stateMachine));
             return;
         }
-        else if (IsInAttackRange())
-        {
-            //stateMachine.SwitchState(new EnemyAttackingState(stateMachine));
-            return;
-        }
+  
 
         MoveToPlayer(deltaTime);
         FaceToPlayer();
 
-        //stateMachine.Animator.SetFloat(SpeedHash, 1f, AnimatorDumpTime, deltaTime);
+        stateMachine.Animator.SetFloat(SpeedHash, 1f, AnimatorDumpTime, deltaTime);
     }
 
     public override void Exit()
     {
-     //   stateMachine.Agent.ResetPath();
-     //   stateMachine.Agent.velocity = Vector3.zero;
+        stateMachine.Agent.ResetPath();
+        stateMachine.Agent.velocity = Vector3.zero;
     }
 
     private void MoveToPlayer(float deltaTime)
@@ -57,7 +53,7 @@ public class EnemyChasingState : EnemyBaseState
     private bool IsInAttackRange()
     {
 
-     //   if (stateMachine.Player.GetComponent<Health>().IsDead) { return false; }
+     //  if (stateMachine.Player.GetComponent<Health>().IsDead) { return false; }
 
         float playerDistanceSqr = (stateMachine.Player.transform.position - stateMachine.transform.position).sqrMagnitude;
 

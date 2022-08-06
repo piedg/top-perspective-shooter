@@ -7,11 +7,13 @@ public class EnemyStateMachine : StateMachine
 {
     [field: SerializeField, Header("Main Components")]
     public CharacterController Controller { get; private set; }
+    [field: SerializeField] public Animator Animator { get; private set; }
 
     [field: SerializeField] public float PlayerChasingRange { get; private set; }
     [field: SerializeField] public NavMeshAgent Agent { get; private set; }
     [field: SerializeField] public float MovementSpeed { get; private set; }
     [field: SerializeField] public float AttackRange { get; private set; }
+
 
     public GameObject Player { get; private set; }
 
@@ -21,4 +23,5 @@ public class EnemyStateMachine : StateMachine
 
         SwitchState(new EnemyIdleState(this));
     }
+
 }

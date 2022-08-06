@@ -14,7 +14,7 @@ public class EnemyIdleState : EnemyBaseState
 
     public override void Enter()
     {
-       // stateMachine.Animator.CrossFadeInFixedTime(LocomotionHash, CrossFadeduration);
+        stateMachine.Animator.CrossFadeInFixedTime(LocomotionHash, CrossFadeduration);
     }
 
     public override void Tick(float deltaTime)
@@ -27,9 +27,9 @@ public class EnemyIdleState : EnemyBaseState
             return;
         }
 
-        //FaceToPlayer();
+        FaceToPlayer();
 
-       // stateMachine.Animator.SetFloat(SpeedHash, 0f, AnimatorDumpTime, deltaTime);
+       stateMachine.Animator.SetFloat(SpeedHash, 0f, AnimatorDumpTime, deltaTime);
     }
 
     public override void Exit()
