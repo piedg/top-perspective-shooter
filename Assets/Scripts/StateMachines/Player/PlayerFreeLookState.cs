@@ -11,7 +11,6 @@ public class PlayerFreeLookState : PlayerBaseState
     private const float AnimatorDumpTime = 0.1f;
     private const float CrossFadeDuration = 0.1f;
 
-
     // TEMP
     Vector3 direction;
 
@@ -30,10 +29,11 @@ public class PlayerFreeLookState : PlayerBaseState
         stateMachine.Animator.SetFloat(FreeLookForwardHash, forwardAmount);
         stateMachine.Animator.SetFloat(FreeLookRightHash, turnAmount);
 
-        direction = (stateMachine.InputManager.MovementValue.y * Vector3.forward) + (stateMachine.InputManager.MovementValue.x * Vector3.right);
+        direction = (stateMachine.InputManager.MovementValue.y * Vector3.forward) + (stateMachine.InputManager.MovementValue.x * Vector3.right).normalized;
+
+        Move(direction * stateMachine.DefaultMovementSpeed, deltaTime);
 
         ConvertDirection(direction);
-        Move(direction * stateMachine.DefaultMovementSpeed, deltaTime);
 
         FaceToMouse();
     }
@@ -55,18 +55,8 @@ public class PlayerFreeLookState : PlayerBaseState
         forwardAmount = localMove.z;
     }
 
-    private void FaceToMouse()
+    /*private void FaceToMouse()
     {
-        RaycastHit _hit;
-        Ray _ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-        if (Physics.Raycast(_ray, out _hit))
-        {
-            stateMachine.transform.LookAt(new Vector3(_hit.point.x, stateMachine.transform.position.y, _hit.point.z));
-           /* if (!isRolling)
-            {
-                CharacterModel.transform.LookAt(Vector3.Lerp(CharacterModel.transform.position, new Vector3(_hit.point.x, transform.position.y, _hit.point.z), Time.deltaTime));
-            }*/
-        }
-    }
+       
+    } */
 }
