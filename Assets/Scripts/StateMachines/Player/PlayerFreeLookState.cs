@@ -21,24 +21,29 @@ public class PlayerFreeLookState : PlayerBaseState
 
     public override void Enter()
     {
+        stateMachine.InputManager.DodgeEvent += OnDodge;
+
         stateMachine.Animator.CrossFadeInFixedTime(FreeLookBlendTreeHash, CrossFadeDuration);
     }
 
     public override void Tick(float deltaTime)
     {
-        stateMachine.Animator.SetFloat(FreeLookForwardHash, forwardAmount);
-        stateMachine.Animator.SetFloat(FreeLookRightHash, turnAmount);
-
-        direction = (stateMachine.InputManager.MovementValue.y * Vector3.forward) + (stateMachine.InputManager.MovementValue.x * Vector3.right).normalized;
+        direction = (stateMachine.InputManager.MovementValue.y * Vector3.forward).normalized + (stateMachine.InputManager.MovementValue.x * Vector3.right).normalized;
 
         Move(direction * stateMachine.DefaultMovementSpeed, deltaTime);
 
         ConvertDirection(direction);
 
         FaceToMouse();
+
+        stateMachine.Animator.SetFloat(FreeLookForwardHash, forwardAmount);
+        stateMachine.Animator.SetFloat(FreeLookRightHash, turnAmount);
     }
 
-    public override void Exit() { }
+    public override void Exit() {
+        stateMachine.InputManager.DodgeEvent -= OnDodge;
+
+    }
 
     void ConvertDirection(Vector3 direction)
     {
@@ -55,8 +60,22 @@ public class PlayerFreeLookState : PlayerBaseState
         forwardAmount = localMove.z;
     }
 
-    /*private void FaceToMouse()
+    private void FaceToMouse()
     {
-       
-    } */
+        // Handle player rotation to mouse position
+
+        RaycastHit _hit;
+        Ray _ray = Camera.main.ScreenPointToRay(stateMachine.InputManager.MouseValue);
+
+        if (Physics.Raycast(_ray, out _hit))
+        {
+            Vector3 point = new Vector3(_hit.point.x, stateMachine.transform.position.y, _hit.point.z);
+            stateMachine.transform.LookAt(point);
+        }
+    }
+
+    private void OnDodge()
+    {
+        stateMachine.SwitchState(new PlayerDodgeState(stateMachine, direction));
+    }
 }

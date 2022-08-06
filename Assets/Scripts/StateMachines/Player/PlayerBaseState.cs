@@ -21,24 +21,6 @@ public abstract class PlayerBaseState : State
     protected void Move(Vector3 direction, float deltaTime)
     {
         // Handle player CharacterController Move method
-
         stateMachine.Controller.Move(direction * deltaTime);
-    }
-
-    protected void FaceToMouse()
-    {
-        // Handle player rotation to mouse position
-
-        RaycastHit _hit;
-        Ray _ray = Camera.main.ScreenPointToRay(stateMachine.InputManager.MouseValue);
-
-        if (Physics.Raycast(_ray, out _hit))
-        {
-            stateMachine.transform.LookAt(new Vector3(_hit.point.x, stateMachine.transform.position.y, _hit.point.z));
-            /* if (!isRolling)
-             {
-                 CharacterModel.transform.LookAt(Vector3.Lerp(CharacterModel.transform.position, new Vector3(_hit.point.x, transform.position.y, _hit.point.z), Time.deltaTime));
-             }*/
-        }
     }
 }
