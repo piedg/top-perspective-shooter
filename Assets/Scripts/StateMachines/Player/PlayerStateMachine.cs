@@ -14,10 +14,10 @@ public class PlayerStateMachine : StateMachine
     [field: SerializeField]
     public float DefaultRotationSpeed { get; private set; }
 
-    [field: SerializeField] public float DodgeDuration { get; private set; }
+    [field: SerializeField, Header("Dodge Settings")] public float DodgeDuration { get; private set; }
     [field: SerializeField] public float DodgeForce { get; private set; }
 
-    [field: SerializeField] public GameObject CharacterModel { get; private set; }
+    [field: SerializeField, Header("Others")] public GameObject CharacterModel { get; private set; }
 
     private void Start()
     {
