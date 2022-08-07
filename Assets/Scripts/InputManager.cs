@@ -9,6 +9,8 @@ public class InputManager : MonoBehaviour, Controls.IPlayerActions
     public Vector2 MovementValue { get; private set; }
     public Vector2 MouseValue { get; private set; }
 
+    public bool IsShooting { get; private set; }
+
     public event Action DodgeEvent;
 
     private Controls controls;
@@ -40,5 +42,17 @@ public class InputManager : MonoBehaviour, Controls.IPlayerActions
     {
         if (!context.performed) { return; }
         DodgeEvent?.Invoke();
+    }
+
+    public void OnShoot(InputAction.CallbackContext context)
+    {
+        if(context.performed)
+        {
+            IsShooting = true;
+        }
+        else if(context.canceled)
+        {
+            IsShooting = false;
+        }
     }
 }

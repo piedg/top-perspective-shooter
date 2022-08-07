@@ -8,10 +8,9 @@ public class PlayerFreeLookState : PlayerBaseState
     private readonly int FreeLookForwardHash = Animator.StringToHash("Forward");
     private readonly int FreeLookRightHash = Animator.StringToHash("Right");
 
-    private const float AnimatorDumpTime = 0.1f;
     private const float CrossFadeDuration = 0.1f;
+    private float nextFire;
 
-    // TEMP
     Vector3 direction;
 
     float forwardAmount;
@@ -28,7 +27,8 @@ public class PlayerFreeLookState : PlayerBaseState
 
     public override void Tick(float deltaTime)
     {
-        direction = (stateMachine.InputManager.MovementValue.y * Vector3.forward).normalized + (stateMachine.InputManager.MovementValue.x * Vector3.right).normalized;
+        direction = (stateMachine.InputManager.MovementValue.y * Vector3.forward) + (stateMachine.InputManager.MovementValue.x * Vector3.right);
+        direction.Normalize();
 
         Move(direction * stateMachine.DefaultMovementSpeed, deltaTime);
 
@@ -36,13 +36,14 @@ public class PlayerFreeLookState : PlayerBaseState
 
         FaceToMouse();
 
+        OnShoot();
+
         stateMachine.Animator.SetFloat(FreeLookForwardHash, forwardAmount);
         stateMachine.Animator.SetFloat(FreeLookRightHash, turnAmount);
     }
 
     public override void Exit() {
         stateMachine.InputManager.DodgeEvent -= OnDodge;
-
     }
 
     void ConvertDirection(Vector3 direction)
@@ -63,7 +64,6 @@ public class PlayerFreeLookState : PlayerBaseState
     private void FaceToMouse()
     {
         // Handle player rotation to mouse position
-
         RaycastHit _hit;
         Ray _ray = Camera.main.ScreenPointToRay(stateMachine.InputManager.MouseValue);
 
@@ -77,5 +77,21 @@ public class PlayerFreeLookState : PlayerBaseState
     private void OnDodge()
     {
         stateMachine.SwitchState(new PlayerDodgeState(stateMachine, direction));
+    }
+
+    private void OnShoot()
+    {
+        if(stateMachine.InputManager.IsShooting && Time.fixedTime > nextFire)
+        {
+            nextFire = Time.fixedTime + stateMachine.FireRate;
+
+            GameObject bullet = stateMachine.ProjectilePool.GetObjectFromPool();
+
+            //Set missile 
+            bullet.transform.SetPositionAndRotation(stateMachine.FirePoint.transform.position, stateMachine.FirePoint.transform.rotation);
+
+            //Active from Pool
+            bullet.SetActive(true);
+        }
     }
 }

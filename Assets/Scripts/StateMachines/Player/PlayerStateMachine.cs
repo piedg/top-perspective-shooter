@@ -17,6 +17,11 @@ public class PlayerStateMachine : StateMachine
     [field: SerializeField, Header("Dodge Settings")] public float DodgeDuration { get; private set; }
     [field: SerializeField] public float DodgeForce { get; private set; }
 
+    [field: SerializeField, Header("Shooting Settings")]
+    public Transform FirePoint { get; private set; }
+    [field: SerializeField] public float FireRate { get; private set; }
+    [field: SerializeField] public ObjectPool ProjectilePool { get; private set; }
+
     [field: SerializeField, Header("Others")] public GameObject CharacterModel { get; private set; }
 
     private void Start()
