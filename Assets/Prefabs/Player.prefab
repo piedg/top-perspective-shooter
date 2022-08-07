@@ -1415,7 +1415,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 549440676513868565}
-  - {fileID: 611119279778995721}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1478,7 +1477,7 @@ MonoBehaviour:
   <DodgeForce>k__BackingField: 5
   <FirePoint>k__BackingField: {fileID: 549440675699536008}
   <FireRate>k__BackingField: 0.25
-  <ProjectilePool>k__BackingField: {fileID: 611119279778995734}
+  <ProjectilePool>k__BackingField: {fileID: 0}
   <CharacterModel>k__BackingField: {fileID: 549440676513868566}
 --- !u!114 &6386026016918638786
 MonoBehaviour:
@@ -2360,79 +2359,6 @@ Transform:
   m_Father: {fileID: 371940015175459565}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &2121251635967147601
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 6386026016918638789}
-    m_Modifications:
-    - target: {fileID: 1516326180152090712, guid: 03ba41a62a6484d7f9778c06e5557ce9, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1516326180152090712, guid: 03ba41a62a6484d7f9778c06e5557ce9, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1516326180152090712, guid: 03ba41a62a6484d7f9778c06e5557ce9, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1516326180152090712, guid: 03ba41a62a6484d7f9778c06e5557ce9, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1516326180152090712, guid: 03ba41a62a6484d7f9778c06e5557ce9, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1516326180152090712, guid: 03ba41a62a6484d7f9778c06e5557ce9, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1516326180152090712, guid: 03ba41a62a6484d7f9778c06e5557ce9, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1516326180152090712, guid: 03ba41a62a6484d7f9778c06e5557ce9, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1516326180152090712, guid: 03ba41a62a6484d7f9778c06e5557ce9, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1516326180152090712, guid: 03ba41a62a6484d7f9778c06e5557ce9, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1516326180152090712, guid: 03ba41a62a6484d7f9778c06e5557ce9, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1516326180152090713, guid: 03ba41a62a6484d7f9778c06e5557ce9, type: 3}
-      propertyPath: m_Name
-      value: ProjectilePool
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 03ba41a62a6484d7f9778c06e5557ce9, type: 3}
---- !u!4 &611119279778995721 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1516326180152090712, guid: 03ba41a62a6484d7f9778c06e5557ce9, type: 3}
-  m_PrefabInstance: {fileID: 2121251635967147601}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &611119279778995734 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1516326180152090695, guid: 03ba41a62a6484d7f9778c06e5557ce9, type: 3}
-  m_PrefabInstance: {fileID: 2121251635967147601}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee9d1c507a7a0ab48808d81933b98cea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &5096301358207406251
 PrefabInstance:
   m_ObjectHideFlags: 0

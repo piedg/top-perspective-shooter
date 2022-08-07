@@ -11,6 +11,7 @@ public class EnemyChasingState : EnemyBaseState
     private const float AnimatorDumpTime = 0.1f;
 
     public EnemyChasingState(EnemyStateMachine stateMachine) : base(stateMachine) { }
+
     public override void Enter()
     {
         stateMachine.Animator.CrossFadeInFixedTime(LocomotionHash, CrossFadeduration);
@@ -23,7 +24,12 @@ public class EnemyChasingState : EnemyBaseState
             stateMachine.SwitchState(new EnemyIdleState(stateMachine));
             return;
         }
-  
+        else if (IsInAttackRange())
+        {
+            stateMachine.SwitchState(new EnemyAttackingState(stateMachine));
+            return;
+        }
+
 
         MoveToPlayer(deltaTime);
         FaceToPlayer();
@@ -52,7 +58,6 @@ public class EnemyChasingState : EnemyBaseState
 
     private bool IsInAttackRange()
     {
-
      //  if (stateMachine.Player.GetComponent<Health>().IsDead) { return false; }
 
         float playerDistanceSqr = (stateMachine.Player.transform.position - stateMachine.transform.position).sqrMagnitude;
