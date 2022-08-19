@@ -14,7 +14,6 @@ public abstract class PlayerBaseState : State
     protected void Move(float deltaTime)
     {
         // Handle player no movement input
-
         Move(Vector3.zero, deltaTime);
     }
 

@@ -15,7 +15,6 @@ public class PlayerFreeLookState : PlayerBaseState
 
     float forwardAmount;
     float turnAmount;
-
     public PlayerFreeLookState(PlayerStateMachine stateMachine) : base(stateMachine) { }
 
     public override void Enter()
@@ -81,6 +80,8 @@ public class PlayerFreeLookState : PlayerBaseState
 
     private void OnShoot()
     {
+        // stateMachine.SwitchState(new PlayerShootingState(stateMachine));
+
         if(stateMachine.InputManager.IsShooting && Time.fixedTime > nextFire)
         {
             nextFire = Time.fixedTime + stateMachine.FireRate;
