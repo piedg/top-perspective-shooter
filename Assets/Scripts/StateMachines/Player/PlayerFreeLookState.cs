@@ -42,7 +42,8 @@ public class PlayerFreeLookState : PlayerBaseState
         stateMachine.Animator.SetFloat(FreeLookRightHash, turnAmount);
     }
 
-    public override void Exit() {
+    public override void Exit() 
+    {
         stateMachine.InputManager.DodgeEvent -= OnDodge;
     }
 

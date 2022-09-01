@@ -25,20 +25,23 @@ public class PlayerDodgeState : PlayerBaseState
     {
         remainingDodgeTime -= deltaTime;
 
-        if(dodgeDirection == Vector3.zero)
+        if (remainingDodgeTime <= 0f)
         {
-            Move(stateMachine.transform.forward * stateMachine.DodgeForce, deltaTime);
+            stateMachine.SwitchState(new PlayerFreeLookState(stateMachine));
+            return;
+        }
+
+        if (dodgeDirection == Vector3.zero)
+        {
+            Move(stateMachine.CharacterModel.transform.forward * stateMachine.DodgeForce, deltaTime);
+            return;
         }
         else
         {
             Move(dodgeDirection.normalized * stateMachine.DodgeForce, deltaTime);
         }
 
-
-        if (remainingDodgeTime <= 0f)
-        {
-            stateMachine.SwitchState(new PlayerFreeLookState(stateMachine));
-        }
+       
 
         FaceMovementDirection(dodgeDirection, deltaTime);
     }
