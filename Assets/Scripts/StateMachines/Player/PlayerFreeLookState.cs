@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerFreeLookState : PlayerBaseState
 {
     private readonly int FreeLookBlendTreeHash = Animator.StringToHash("FreeLookBlendTree");
+    private readonly int TurnLocomotionHash = Animator.StringToHash("TurnLocomotion");
+    private readonly int TurnHash = Animator.StringToHash("Turn");
     private readonly int FreeLookForwardHash = Animator.StringToHash("Forward");
     private readonly int FreeLookRightHash = Animator.StringToHash("Right");
 
@@ -39,6 +41,8 @@ public class PlayerFreeLookState : PlayerBaseState
 
         stateMachine.Animator.SetFloat(FreeLookForwardHash, forwardAmount);
         stateMachine.Animator.SetFloat(FreeLookRightHash, turnAmount);
+
+        Debug.Log("Forward Amount" + forwardAmount);
     }
 
     public override void Exit() {
@@ -66,7 +70,7 @@ public class PlayerFreeLookState : PlayerBaseState
         RaycastHit _hit;
         Ray _ray = Camera.main.ScreenPointToRay(stateMachine.InputManager.MouseValue);
 
-        if (Physics.Raycast(_ray, out _hit))
+        if (Physics.Raycast(_ray, out _hit, Mathf.Infinity))
         {
             Vector3 point = new Vector3(_hit.point.x, stateMachine.transform.position.y, _hit.point.z);
             stateMachine.transform.LookAt(point);

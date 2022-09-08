@@ -36,10 +36,8 @@ public class PlayerDodgeState : PlayerBaseState
             Move(stateMachine.transform.forward * stateMachine.DodgeForce, deltaTime);
             return;
         }
-        else
-        {
-            Move(dodgeDirection.normalized * stateMachine.DodgeForce, deltaTime);
-        }
+   
+        Move(dodgeDirection.normalized * stateMachine.DodgeForce, deltaTime);
 
         FaceMovementDirection(dodgeDirection, deltaTime);
     }
