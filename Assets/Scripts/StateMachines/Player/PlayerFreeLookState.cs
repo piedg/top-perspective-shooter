@@ -5,8 +5,6 @@ using UnityEngine;
 public class PlayerFreeLookState : PlayerBaseState
 {
     private readonly int FreeLookBlendTreeHash = Animator.StringToHash("FreeLookBlendTree");
-    private readonly int TurnLocomotionHash = Animator.StringToHash("TurnLocomotion");
-    private readonly int TurnHash = Animator.StringToHash("Turn");
     private readonly int FreeLookForwardHash = Animator.StringToHash("Forward");
     private readonly int FreeLookRightHash = Animator.StringToHash("Right");
 
@@ -16,7 +14,7 @@ public class PlayerFreeLookState : PlayerBaseState
     Vector3 direction;
 
     float forwardAmount;
-    float turnAmount;
+    float rightAmount;
     public PlayerFreeLookState(PlayerStateMachine stateMachine) : base(stateMachine) { }
 
     public override void Enter()
@@ -40,7 +38,7 @@ public class PlayerFreeLookState : PlayerBaseState
         OnShoot();
 
         stateMachine.Animator.SetFloat(FreeLookForwardHash, forwardAmount);
-        stateMachine.Animator.SetFloat(FreeLookRightHash, turnAmount);
+        stateMachine.Animator.SetFloat(FreeLookRightHash, rightAmount);
 
     }
 
@@ -57,7 +55,7 @@ public class PlayerFreeLookState : PlayerBaseState
 
         Vector3 localMove = stateMachine.transform.InverseTransformDirection(direction);
 
-        turnAmount = localMove.x;
+        rightAmount = localMove.x;
         forwardAmount = localMove.z;
     }
 

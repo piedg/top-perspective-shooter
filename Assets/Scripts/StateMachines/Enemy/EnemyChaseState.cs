@@ -10,7 +10,11 @@ public class EnemyChasingState : EnemyBaseState
     private const float CrossFadeduration = 0.1f;
     private const float AnimatorDumpTime = 0.1f;
 
-    public EnemyChasingState(EnemyStateMachine stateMachine) : base(stateMachine) { }
+
+    public EnemyChasingState(EnemyStateMachine stateMachine) : base(stateMachine) 
+    {
+  
+    }
 
     public override void Enter()
     {
@@ -19,9 +23,16 @@ public class EnemyChasingState : EnemyBaseState
 
     public override void Tick(float deltaTime)
     {
+        EnemyStateMachine.SuperAttackCooldown -= deltaTime;
+
         if (!IsInChaseRange())
         {
             stateMachine.SwitchState(new EnemyIdleState(stateMachine));
+            return;
+        }
+        else if (EnemyStateMachine.SuperAttackCooldown <= 0f)
+        {
+            stateMachine.SwitchState(new EnemySuperAttackState(stateMachine));
             return;
         }
         else if (IsInAttackRange())
@@ -35,6 +46,7 @@ public class EnemyChasingState : EnemyBaseState
         FaceToPlayer();
 
         stateMachine.Animator.SetFloat(SpeedHash, 1f, AnimatorDumpTime, deltaTime);
+
     }
 
     public override void Exit()
@@ -45,7 +57,6 @@ public class EnemyChasingState : EnemyBaseState
 
     private void MoveToPlayer(float deltaTime)
     {
-
         if (stateMachine.Agent.isOnNavMesh)
         {
             stateMachine.Agent.destination = stateMachine.Player.transform.position;
@@ -64,6 +75,5 @@ public class EnemyChasingState : EnemyBaseState
 
         return playerDistanceSqr <= stateMachine.AttackRange * stateMachine.AttackRange;
     }
-
 }
 

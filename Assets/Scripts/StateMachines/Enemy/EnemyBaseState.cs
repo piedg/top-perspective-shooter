@@ -1,15 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public abstract class EnemyBaseState : State
 {
     protected EnemyStateMachine stateMachine;
-
-
-    // TEMP
-    float speed = 5f;
-
 
     public EnemyBaseState(EnemyStateMachine stateMachine)
     {
@@ -24,7 +20,12 @@ public abstract class EnemyBaseState : State
 
     protected void Move(Vector3 motion, float deltaTime)
     {
-        stateMachine.Controller.Move((motion + stateMachine.ForceReceiver.Movement * speed) * deltaTime);
+        stateMachine.Controller.Move((motion + stateMachine.ForceReceiver.Movement * stateMachine.MovementSpeed) * deltaTime);
+    }
+
+    protected void MoveTo(Vector3 playerPosition)
+    {
+        stateMachine.Agent.SetDestination(playerPosition);
     }
 
     protected void FaceToPlayer()

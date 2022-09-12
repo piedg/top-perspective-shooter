@@ -1395,6 +1395,7 @@ GameObject:
   - component: {fileID: 6386026016918638788}
   - component: {fileID: 6386026016918638787}
   - component: {fileID: 6386026016918638786}
+  - component: {fileID: 6863408530021034695}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1478,6 +1479,7 @@ MonoBehaviour:
   <FirePoint>k__BackingField: {fileID: 549440675699536008}
   <FireRate>k__BackingField: 0.25
   <ProjectilePool>k__BackingField: {fileID: 0}
+  <ForceReceiver>k__BackingField: {fileID: 6863408530021034695}
   <CharacterModel>k__BackingField: {fileID: 549440676513868566}
 --- !u!114 &6386026016918638786
 MonoBehaviour:
@@ -1491,6 +1493,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a084730ee9df84692af4aaa9a27db7fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6863408530021034695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6040567896800152191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73502628a067e964ba65362887a874ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Controller: {fileID: 6386026016918638788}
+  Agent: {fileID: 0}
+  drag: 0.1
 --- !u!1 &6533100237259562766
 GameObject:
   m_ObjectHideFlags: 0

@@ -17,6 +17,14 @@ public class EnemyAttackingState : EnemyBaseState
 
     public override void Tick(float deltaTime)
     {
+        EnemyStateMachine.SuperAttackCooldown -= deltaTime;
+
+        if (EnemyStateMachine.SuperAttackCooldown <= 0f)
+        {
+            stateMachine.SwitchState(new EnemySuperAttackState(stateMachine));
+            return;
+        }
+
         if (GetNormalizedTime(stateMachine.Animator, "Attack") >= 1)
         {
             stateMachine.SwitchState(new EnemyChasingState(stateMachine));
@@ -25,7 +33,5 @@ public class EnemyAttackingState : EnemyBaseState
         FaceToPlayer();
     }
 
-    public override void Exit()
-    {
-    }
+    public override void Exit() { }
 }
