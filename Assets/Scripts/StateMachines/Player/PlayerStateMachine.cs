@@ -21,6 +21,7 @@ public class PlayerStateMachine : StateMachine
     public Transform FirePoint { get; private set; }
     [field: SerializeField] public float FireRate { get; private set; }
     [field: SerializeField] public ObjectPool ProjectilePool { get; private set; }
+    [field: SerializeField, Header("Physic")] public ForceReceiver ForceReceiver { get; private set; }
 
     [field: SerializeField, Header("Others")] public GameObject CharacterModel { get; private set; }
 

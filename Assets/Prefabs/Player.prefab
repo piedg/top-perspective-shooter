@@ -1471,10 +1471,10 @@ MonoBehaviour:
   <Controller>k__BackingField: {fileID: 6386026016918638788}
   <InputManager>k__BackingField: {fileID: 6386026016918638786}
   <Animator>k__BackingField: {fileID: 1044716398198868671}
-  <DefaultMovementSpeed>k__BackingField: 5
+  <DefaultMovementSpeed>k__BackingField: 6
   <DefaultRotationSpeed>k__BackingField: 5
   <DodgeDuration>k__BackingField: 0.75
-  <DodgeForce>k__BackingField: 5
+  <DodgeForce>k__BackingField: 10
   <FirePoint>k__BackingField: {fileID: 549440675699536008}
   <FireRate>k__BackingField: 0.25
   <ProjectilePool>k__BackingField: {fileID: 0}
@@ -2409,6 +2409,18 @@ PrefabInstance:
     - target: {fileID: 4686390190209238191, guid: ff6df204b03ab41cda20f9a07283965f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 7.643
+      objectReference: {fileID: 0}
+    - target: {fileID: 4690976712403689507, guid: ff6df204b03ab41cda20f9a07283965f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.011
+      objectReference: {fileID: 0}
+    - target: {fileID: 4690976712403689507, guid: ff6df204b03ab41cda20f9a07283965f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.115
+      objectReference: {fileID: 0}
+    - target: {fileID: 4690976712403689507, guid: ff6df204b03ab41cda20f9a07283965f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.552
       objectReference: {fileID: 0}
     - target: {fileID: 4692172288311116017, guid: ff6df204b03ab41cda20f9a07283965f, type: 3}
       propertyPath: m_Name

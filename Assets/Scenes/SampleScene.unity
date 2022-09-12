@@ -220,6 +220,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &316353232 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6040567896800152191, guid: c558fb1c973ef4ec48a70a69fb1dc6bd, type: 3}
+  m_PrefabInstance: {fileID: 549440676511398407}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &433589133
 GameObject:
   m_ObjectHideFlags: 0
@@ -427,6 +432,7 @@ GameObject:
   - component: {fileID: 487999464}
   - component: {fileID: 487999463}
   - component: {fileID: 487999466}
+  - component: {fileID: 487999467}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -459,7 +465,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 487999461}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 1
   m_Speed: 1
   m_Acceleration: 0
   avoidancePriority: 50
@@ -488,8 +494,9 @@ MonoBehaviour:
   <Animator>k__BackingField: {fileID: 487999466}
   <PlayerChasingRange>k__BackingField: 25
   <Agent>k__BackingField: {fileID: 487999463}
-  <MovementSpeed>k__BackingField: 0.5
+  <MovementSpeed>k__BackingField: 1
   <AttackRange>k__BackingField: 5
+  <ForceReceiver>k__BackingField: {fileID: 487999467}
 --- !u!143 &487999465
 CharacterController:
   m_ObjectHideFlags: 0
@@ -507,7 +514,7 @@ CharacterController:
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 1.5, z: 0}
+  m_Center: {x: 0, y: 1.7, z: 0}
 --- !u!95 &487999466
 Animator:
   serializedVersion: 4
@@ -528,6 +535,21 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &487999467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 487999461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73502628a067e964ba65362887a874ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Controller: {fileID: 487999465}
+  Agent: {fileID: 487999463}
+  drag: 0.3
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -700,7 +722,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0.54411197, y: 0.000000017922549, z: -0.000000011623035, w: 0.8390126}
-  m_LocalPosition: {x: -0.00000017426025, y: 9.550336, z: -4.0788436}
+  m_LocalPosition: {x: -0.00000017426025, y: 10.640336, z: -4.0788436}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1405,7 +1427,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1834536536}
   m_LocalRotation: {x: 0.54411197, y: 0.000000017922549, z: -0.000000011623035, w: 0.8390126}
-  m_LocalPosition: {x: -0.00000017426025, y: 9.550336, z: -4.0788436}
+  m_LocalPosition: {x: -0.00000017426025, y: 10.640336, z: -4.0788436}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1517,34 +1539,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 549440675699536008, guid: c558fb1c973ef4ec48a70a69fb1dc6bd, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.011
-      objectReference: {fileID: 0}
-    - target: {fileID: 549440675699536008, guid: c558fb1c973ef4ec48a70a69fb1dc6bd, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.115
-      objectReference: {fileID: 0}
-    - target: {fileID: 549440675699536008, guid: c558fb1c973ef4ec48a70a69fb1dc6bd, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.552
-      objectReference: {fileID: 0}
     - target: {fileID: 6040567896800152191, guid: c558fb1c973ef4ec48a70a69fb1dc6bd, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 6386026016918638787, guid: c558fb1c973ef4ec48a70a69fb1dc6bd, type: 3}
-      propertyPath: <DodgeForce>k__BackingField
-      value: 10
-      objectReference: {fileID: 0}
+      propertyPath: <ForceReceiver>k__BackingField
+      value: 
+      objectReference: {fileID: 6863408530021034695}
     - target: {fileID: 6386026016918638787, guid: c558fb1c973ef4ec48a70a69fb1dc6bd, type: 3}
       propertyPath: <ProjectilePool>k__BackingField
       value: 
       objectReference: {fileID: 1661804953}
-    - target: {fileID: 6386026016918638787, guid: c558fb1c973ef4ec48a70a69fb1dc6bd, type: 3}
-      propertyPath: <DefaultMovementSpeed>k__BackingField
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 6386026016918638789, guid: c558fb1c973ef4ec48a70a69fb1dc6bd, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -1555,7 +1561,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6386026016918638789, guid: c558fb1c973ef4ec48a70a69fb1dc6bd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.42
+      value: 1.51
       objectReference: {fileID: 0}
     - target: {fileID: 6386026016918638789, guid: c558fb1c973ef4ec48a70a69fb1dc6bd, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1596,3 +1602,23 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6386026016918638789, guid: c558fb1c973ef4ec48a70a69fb1dc6bd, type: 3}
   m_PrefabInstance: {fileID: 549440676511398407}
   m_PrefabAsset: {fileID: 0}
+--- !u!143 &6863408530021034693 stripped
+CharacterController:
+  m_CorrespondingSourceObject: {fileID: 6386026016918638788, guid: c558fb1c973ef4ec48a70a69fb1dc6bd, type: 3}
+  m_PrefabInstance: {fileID: 549440676511398407}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6863408530021034695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 316353232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73502628a067e964ba65362887a874ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Controller: {fileID: 6863408530021034693}
+  Agent: {fileID: 0}
+  drag: 0.1
