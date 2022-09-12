@@ -100,6 +100,17 @@
                 },
                 {
                     "name": "",
+                    "id": "f159161b-4aef-428f-b7d0-f7f3fa7eb3d7",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "5d32bc9a-071e-400b-91b6-80df4c229fbd",
                     "path": "<Keyboard>/space",
                     "interactions": "",
@@ -111,11 +122,33 @@
                 },
                 {
                     "name": "",
-                    "id": "3a09b362-41b6-47fb-95ac-9f7ec5f80268",
+                    "id": "bceda29c-44f5-4885-85bb-aeb4c8305a05",
+                    "path": "<Gamepad>/leftStickPress",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Dodge",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bb432d39-81de-4b78-bdab-ef5e852007fe",
                     "path": "<Mouse>/position",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Keyboard & Mouse",
+                    "action": "Look",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c2f5a2cf-019e-4860-b750-c3eb5f4d05a3",
+                    "path": "<XInputController>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
                     "action": "Look",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -127,6 +160,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard & Mouse",
+                    "action": "Shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bcd170aa-e3ba-4a7c-8ef7-542b235d12f6",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
                     "action": "Shoot",
                     "isComposite": false,
                     "isPartOfComposite": false

@@ -42,7 +42,6 @@ public class PlayerFreeLookState : PlayerBaseState
         stateMachine.Animator.SetFloat(FreeLookForwardHash, forwardAmount);
         stateMachine.Animator.SetFloat(FreeLookRightHash, turnAmount);
 
-        Debug.Log("Forward Amount" + forwardAmount);
     }
 
     public override void Exit() {
@@ -56,9 +55,7 @@ public class PlayerFreeLookState : PlayerBaseState
             direction.Normalize();
         }
 
-        Vector3 convertedDirection = direction;
-
-        Vector3 localMove = stateMachine.transform.InverseTransformDirection(convertedDirection);
+        Vector3 localMove = stateMachine.transform.InverseTransformDirection(direction);
 
         turnAmount = localMove.x;
         forwardAmount = localMove.z;
@@ -67,14 +64,18 @@ public class PlayerFreeLookState : PlayerBaseState
     private void FaceToMouse()
     {
         // Handle player rotation to mouse position
-        RaycastHit _hit;
-        Ray _ray = Camera.main.ScreenPointToRay(stateMachine.InputManager.MouseValue);
+          Ray ray = Camera.main.ScreenPointToRay(stateMachine.InputManager.MouseValue);
+          Plane virtualPlane = new Plane(Vector3.up, stateMachine.transform.position);
+          if (virtualPlane.Raycast(ray, out float hitDist))
+          {
+              Vector3 hitPoint = ray.GetPoint(hitDist);
+              stateMachine.transform.LookAt(hitPoint);
+          } 
 
-        if (Physics.Raycast(_ray, out _hit, Mathf.Infinity))
-        {
-            Vector3 point = new Vector3(_hit.point.x, stateMachine.transform.position.y, _hit.point.z);
-            stateMachine.transform.LookAt(point);
-        }
+          //For Gamepad
+       /* Vector3 direction = new Vector3(stateMachine.InputManager.MouseValue.x, 0, stateMachine.InputManager.MouseValue.y); //if you're 2d side scroller, you need to swap 2nd and 3rd value.
+        stateMachine.transform.rotation = Quaternion.LookRotation(direction); */
+
     }
 
     private void OnDodge()
