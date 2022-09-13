@@ -2195,14 +2195,6 @@ PrefabInstance:
       propertyPath: <ProjectilePool>k__BackingField
       value: 
       objectReference: {fileID: 1379920755}
-    - target: {fileID: 6499994463280635424, guid: b287de1827cdb214dadc7e38649ee3a0, type: 3}
-      propertyPath: m_Lens.FieldOfView
-      value: 70
-      objectReference: {fileID: 0}
-    - target: {fileID: 6499994464690961674, guid: b287de1827cdb214dadc7e38649ee3a0, type: 3}
-      propertyPath: field of view
-      value: 70
-      objectReference: {fileID: 0}
     - target: {fileID: 6499994464831390548, guid: b287de1827cdb214dadc7e38649ee3a0, type: 3}
       propertyPath: m_Name
       value: PlayerRig
