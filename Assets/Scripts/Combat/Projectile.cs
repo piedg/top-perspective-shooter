@@ -32,4 +32,18 @@ public class Projectile : MonoBehaviour
     {
         gameObject.SetActive(false);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.CompareTag("Enemy"))
+        {
+            //TODO ParticleEffects, Sounds
+            gameObject.SetActive(false);
+        }
+        else if(other.gameObject.layer == LayerMask.NameToLayer("Environment"))
+        {
+            //TODO ParticleEffects, Sounds
+            gameObject.SetActive(false);
+        }
+    }
 }

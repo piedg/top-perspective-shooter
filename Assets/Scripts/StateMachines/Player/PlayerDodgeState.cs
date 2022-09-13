@@ -14,7 +14,6 @@ public class PlayerDodgeState : PlayerBaseState
     {
         this.dodgeDirection = dodgeDirection;
     }
-
     public override void Enter()
     {
         remainingDodgeTime = stateMachine.DodgeDuration;

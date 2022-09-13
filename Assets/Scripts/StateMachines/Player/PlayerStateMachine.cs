@@ -14,7 +14,6 @@ public class PlayerStateMachine : StateMachine
     public float DefaultMovementSpeed { get; private set; }
     [field: SerializeField]
     public float DefaultRotationSpeed { get; private set; }
-
     [field: SerializeField, Header("Dodge Settings")] public float DodgeDuration { get; private set; }
     [field: SerializeField] public float DodgeForce { get; private set; }
 
@@ -24,7 +23,6 @@ public class PlayerStateMachine : StateMachine
     [field: SerializeField] public int WeaponDamage { get; private set; }
     [field: SerializeField] public ObjectPool ProjectilePool { get; private set; }
     [field: SerializeField, Header("Physic")] public ForceReceiver ForceReceiver { get; private set; }
-
     [field: SerializeField, Header("Others")] public GameObject CharacterModel { get; private set; }
 
     private void Start()

@@ -27,20 +27,19 @@ public class PlayerFreeLookState : PlayerBaseState
     public override void Tick(float deltaTime)
     {
         direction = (stateMachine.InputManager.MovementValue.y * Vector3.forward) + (stateMachine.InputManager.MovementValue.x * Vector3.right);
+
         direction.Normalize();
 
         OnShoot();
 
-        Move(direction * stateMachine.DefaultMovementSpeed, deltaTime);
-
         ConvertDirection(direction);
+
+        Move(direction * stateMachine.DefaultMovementSpeed, deltaTime);
 
         FaceToMouse();
 
-
         stateMachine.Animator.SetFloat(FreeLookForwardHash, forwardAmount);
         stateMachine.Animator.SetFloat(FreeLookRightHash, rightAmount);
-
     }
 
     public override void Exit() {
@@ -73,8 +72,8 @@ public class PlayerFreeLookState : PlayerBaseState
               stateMachine.transform.LookAt(hitPoint);
           }
 
-        //For Gamepad
-        /* Vector3 direction = new Vector3(stateMachine.InputManager.MouseValue.x, 0, stateMachine.InputManager.MouseValue.y); //if you're 2d side scroller, you need to swap 2nd and 3rd value.
+        // Gamepad
+        /* Vector3 direction = new Vector3(stateMachine.InputManager.MouseValue.x, 0, stateMachine.InputManager.MouseValue.y);
          stateMachine.transform.rotation = Quaternion.LookRotation(direction); */
 
     }
@@ -92,15 +91,15 @@ public class PlayerFreeLookState : PlayerBaseState
         {
             nextFire = Time.fixedTime + stateMachine.FireRate;
 
-            GameObject bullet = stateMachine.ProjectilePool.GetObjectFromPool();
+            GameObject projectile = stateMachine.ProjectilePool.GetObjectFromPool();
 
-            //Set missile 
-            bullet.transform.SetPositionAndRotation(stateMachine.FirePoint.transform.position, stateMachine.FirePoint.transform.rotation);
+            //Set projectile 
+            projectile.transform.SetPositionAndRotation(stateMachine.FirePoint.transform.position, stateMachine.FirePoint.transform.rotation);
 
-            bullet.GetComponent<Damage>().SetAttack(stateMachine.WeaponDamage);
+            projectile.GetComponent<Damage>().SetAttack(stateMachine.WeaponDamage);
 
             //Active from Pool
-            bullet.SetActive(true);
+            projectile.SetActive(true);
         }
     }
 }

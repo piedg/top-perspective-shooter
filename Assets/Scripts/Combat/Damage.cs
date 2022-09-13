@@ -30,12 +30,10 @@ public class Damage : MonoBehaviour
 
         alreadyCollidedWith.Add(other);
 
-
         if (other.TryGetComponent<Health>(out Health health))
         {
             health.DealDamage(damage);
         }
-
       
     }
 
