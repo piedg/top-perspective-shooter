@@ -15,12 +15,14 @@ public class EnemyStateMachine : StateMachine
     [field: SerializeField] public float AttackRange { get; private set; }
     [field: SerializeField] public ForceReceiver ForceReceiver { get; private set; }
     [field: SerializeField] public float SuperAttackTimer { get; private set; }
+    [field: SerializeField] public float JumpForce { get; private set; }
     [field: SerializeField] public Damage AttackPoint { get; private set; }
     [field: SerializeField] public int SuperAttackDamage { get; private set; }
     [field: SerializeField] public int SuperAttackRange { get; private set; }
     [field: SerializeField] public int AttackDamage { get; private set; }
 
     public GameObject Player { get; private set; }
+    public bool HasGroundedImpact { get; private set; }
 
     public static float SuperAttackCooldown;
 
@@ -39,11 +41,13 @@ public class EnemyStateMachine : StateMachine
 
     public void Attack()
     {
+        HasGroundedImpact = true;
         AttackPoint.gameObject.SetActive(true);
     }
 
     public void FinishAttack()
     {
+        HasGroundedImpact = false;
         AttackPoint.gameObject.SetActive(false);
     }
 

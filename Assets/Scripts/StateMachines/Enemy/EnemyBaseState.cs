@@ -12,7 +12,6 @@ public abstract class EnemyBaseState : State
         this.stateMachine = stateMachine;
     }
    
-
     protected void Move(float deltaTime)
     {
         Move(Vector3.zero, deltaTime);
@@ -23,9 +22,9 @@ public abstract class EnemyBaseState : State
         stateMachine.Controller.Move((motion + stateMachine.ForceReceiver.Movement * stateMachine.MovementSpeed) * deltaTime);
     }
 
-    protected void MoveTo(Vector3 playerPosition)
+    protected void MoveForward(float deltaTime)
     {
-        stateMachine.Agent.SetDestination(playerPosition);
+        stateMachine.Controller.Move(stateMachine.transform.forward * stateMachine.JumpForce * deltaTime);
     }
 
     protected void FaceToPlayer()

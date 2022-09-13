@@ -10,11 +10,7 @@ public class EnemyChasingState : EnemyBaseState
     private const float CrossFadeduration = 0.1f;
     private const float AnimatorDumpTime = 0.1f;
 
-
-    public EnemyChasingState(EnemyStateMachine stateMachine) : base(stateMachine) 
-    {
-  
-    }
+    public EnemyChasingState(EnemyStateMachine stateMachine) : base(stateMachine) { }
 
     public override void Enter()
     {
@@ -41,12 +37,10 @@ public class EnemyChasingState : EnemyBaseState
             return;
         }
 
-
         MoveToPlayer(deltaTime);
         FaceToPlayer();
 
         stateMachine.Animator.SetFloat(SpeedHash, 1f, AnimatorDumpTime, deltaTime);
-
     }
 
     public override void Exit()
@@ -69,7 +63,7 @@ public class EnemyChasingState : EnemyBaseState
 
     private bool IsInAttackRange()
     {
-     //  if (stateMachine.Player.GetComponent<Health>().IsDead) { return false; }
+        if (stateMachine.Player.GetComponent<Health>().IsDead) { return false; }
 
         float playerDistanceSqr = (stateMachine.Player.transform.position - stateMachine.transform.position).sqrMagnitude;
 

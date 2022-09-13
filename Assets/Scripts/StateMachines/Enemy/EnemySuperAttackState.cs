@@ -4,36 +4,32 @@ using UnityEngine;
 
 public class EnemySuperAttackState : EnemyBaseState
 {
+    private readonly int JumpHash = Animator.StringToHash("Jump");
     private readonly int SuperAttackHash = Animator.StringToHash("SuperAttack");
+
     private const float TransitionDuration = 0.1f;
 
-    Vector3 playerLastPosition;
-
-    public EnemySuperAttackState(EnemyStateMachine stateMachine) : base(stateMachine) {
-    }
+    public EnemySuperAttackState(EnemyStateMachine stateMachine) : base(stateMachine) { }
 
     public override void Enter()
     {
         stateMachine.ResetSuperAttackTimer();
-        playerLastPosition = stateMachine.Player.transform.position;
 
         stateMachine.AttackPoint.SetAttack(stateMachine.SuperAttackDamage, stateMachine.SuperAttackRange, true);
 
-        stateMachine.Animator.CrossFadeInFixedTime(SuperAttackHash, TransitionDuration);
-
+        stateMachine.Animator.CrossFadeInFixedTime(JumpHash, TransitionDuration);
     }
 
     public override void Tick(float deltaTime)
     {
-        MoveTo(playerLastPosition);
+         MoveForward(deltaTime);
 
-        if (GetNormalizedTime(stateMachine.Animator, "SuperAttack") >= 1)
+        if (GetNormalizedTime(stateMachine.Animator, "SuperAttackJump") >= 1)
         {
-            stateMachine.SwitchState(new EnemyChasingState(stateMachine));
+            stateMachine.SwitchState(new EnemyJumpImpactState(stateMachine));
         }
     }
 
     public override void Exit() { }
-   
    
 }
