@@ -8,6 +8,7 @@ public class PlayerStateMachine : StateMachine
     public CharacterController Controller { get; private set; }
     [field: SerializeField] public InputManager InputManager { get; private set; }
     [field: SerializeField] public Animator Animator { get; private set; }
+    [field: SerializeField] public Health Health { get; private set; }
 
     [field: SerializeField, Header("Movement Settings")]
     public float DefaultMovementSpeed { get; private set; }
@@ -28,5 +29,38 @@ public class PlayerStateMachine : StateMachine
     private void Start()
     {
         SwitchState(new PlayerFreeLookState(this));
+    }
+
+    private void OnEnable()
+    {
+        Health.OnTakeDamage += HandleTakeDamage;
+        Health.OnDie += HandleDie;
+    }
+    private void OnDisable()
+    {
+        Health.OnTakeDamage -= HandleTakeDamage;
+        Health.OnDie -= HandleDie;
+    }
+
+    void HandleTakeDamage()
+    {
+        // TODO: Create a TakeDamageState
+        //StartCoroutine(TakeDamage());   
+    }
+
+    IEnumerator TakeDamage()
+    {
+        Health.SetInvulnerable(true);
+        yield return new WaitForSeconds(5f);
+        Health.SetInvulnerable(false);
+    }
+
+    void HandleDie()
+    {
+
+        // TODO: Create a DeadState
+        // TEMP SOLUTION
+        Animator.enabled = false;
+        this.enabled = false;
     }
 }
