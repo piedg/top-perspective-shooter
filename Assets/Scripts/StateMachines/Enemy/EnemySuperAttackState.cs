@@ -16,6 +16,9 @@ public class EnemySuperAttackState : EnemyBaseState
     {
         stateMachine.ResetSuperAttackTimer();
         playerLastPosition = stateMachine.Player.transform.position;
+
+        stateMachine.AttackPoint.SetAttack(stateMachine.SuperAttackDamage, stateMachine.SuperAttackRange, true);
+
         stateMachine.Animator.CrossFadeInFixedTime(SuperAttackHash, TransitionDuration);
 
     }
@@ -31,5 +34,6 @@ public class EnemySuperAttackState : EnemyBaseState
     }
 
     public override void Exit() { }
+   
    
 }
