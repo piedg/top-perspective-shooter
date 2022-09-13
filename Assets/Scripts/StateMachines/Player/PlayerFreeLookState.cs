@@ -30,13 +30,14 @@ public class PlayerFreeLookState : PlayerBaseState
 
         direction.Normalize();
 
-        OnShoot();
 
         ConvertDirection(direction);
 
         Move(direction * stateMachine.DefaultMovementSpeed, deltaTime);
 
         FaceToMouse();
+
+        OnShoot();
 
         stateMachine.Animator.SetFloat(FreeLookForwardHash, forwardAmount);
         stateMachine.Animator.SetFloat(FreeLookRightHash, rightAmount);

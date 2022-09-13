@@ -736,7 +736,7 @@ Transform:
   m_GameObject: {fileID: 487999461}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 17.6, y: 1.1503339, z: 24.27}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4526462698904055}
@@ -789,7 +789,7 @@ MonoBehaviour:
   <SuperAttackTimer>k__BackingField: 5
   <AttackPoint>k__BackingField: {fileID: 1000503396}
   <SuperAttackDamage>k__BackingField: 50
-  <SuperAttackRange>k__BackingField: 4
+  <SuperAttackRange>k__BackingField: 5
   <AttackDamage>k__BackingField: 25
 --- !u!143 &487999465
 CharacterController:
@@ -856,7 +856,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15585fb8f5d9f2d4991f5e6f5493504a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 1000
 --- !u!1 &499041802
 GameObject:
   m_ObjectHideFlags: 0
