@@ -9,13 +9,11 @@ public class PlayerStateMachine : StateMachine
     [field: SerializeField] public InputManager InputManager { get; private set; }
     [field: SerializeField] public Animator Animator { get; private set; }
     [field: SerializeField] public Health Health { get; private set; }
-
-    [field: SerializeField, Header("Movement Settings")]
-    public float DefaultMovementSpeed { get; private set; }
-    [field: SerializeField]
-    public float DefaultRotationSpeed { get; private set; }
+    [field: SerializeField, Header("Movement Settings")] public float DefaultMovementSpeed { get; private set; }
     [field: SerializeField, Header("Dodge Settings")] public float DodgeDuration { get; private set; }
-    [field: SerializeField] public float DodgeForce { get; private set; }
+    [field: SerializeField] public float DodgeForce { get; private set; } = 0.75f;
+    [field: SerializeField] public float DefaultRotationSpeed { get; private set; }
+
 
     [field: SerializeField, Header("Shooting Settings")]
     public Transform FirePoint { get; private set; }
@@ -23,7 +21,6 @@ public class PlayerStateMachine : StateMachine
     [field: SerializeField] public int WeaponDamage { get; private set; }
     [field: SerializeField] public ObjectPool ProjectilePool { get; private set; }
     [field: SerializeField, Header("Physic")] public ForceReceiver ForceReceiver { get; private set; }
-    [field: SerializeField, Header("Others")] public GameObject CharacterModel { get; private set; }
 
     private void Start()
     {

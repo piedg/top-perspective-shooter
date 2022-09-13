@@ -17,9 +17,9 @@ public class EnemyAttackingState : EnemyBaseState
 
     public override void Tick(float deltaTime)
     {
-        EnemyStateMachine.SuperAttackCooldown -= deltaTime;
+        EnemyStateMachine.SuperAttackTimer -= deltaTime;
 
-        if (EnemyStateMachine.SuperAttackCooldown <= 0f)
+        if (EnemyStateMachine.SuperAttackTimer <= 0f)
         {
             stateMachine.SwitchState(new EnemySuperAttackState(stateMachine));
             return;

@@ -9,33 +9,33 @@ public class EnemyStateMachine : StateMachine
     public CharacterController Controller { get; private set; }
     [field: SerializeField] public Animator Animator { get; private set; }
     [field: SerializeField] public Health Health { get; private set; }
-    [field: SerializeField] public float PlayerChasingRange { get; private set; }
-    [field: SerializeField] public NavMeshAgent Agent { get; private set; }
-    [field: SerializeField] public float MovementSpeed { get; private set; }
-    [field: SerializeField] public float AttackRange { get; private set; }
     [field: SerializeField] public ForceReceiver ForceReceiver { get; private set; }
-    [field: SerializeField] public float SuperAttackTimer { get; private set; }
-    [field: SerializeField] public float JumpForce { get; private set; }
-    [field: SerializeField] public Damage AttackPoint { get; private set; }
-    [field: SerializeField] public int SuperAttackDamage { get; private set; }
-    [field: SerializeField] public int SuperAttackRange { get; private set; }
+    [field: SerializeField] public NavMeshAgent Agent { get; private set; }
+    [field: SerializeField, Header("Movement Settings")] public float PlayerChasingRange { get; private set; }
+    [field: SerializeField] public float MovementSpeed { get; private set; }
+    [field: SerializeField, Header("Attack Settings")] public Damage AttackPoint { get; private set; }
+    [field: SerializeField] public float AttackRange { get; private set; }
     [field: SerializeField] public int AttackDamage { get; private set; }
+    [field: SerializeField] public int SuperAttackRange { get; private set; }
+    [field: SerializeField] public int SuperAttackDamage { get; private set; }
+    [field: SerializeField] public float JumpForce { get; private set; }
+    [field: SerializeField] public float SuperAttackCooldown { get; private set; }
 
     public GameObject Player { get; private set; }
 
-    public static float SuperAttackCooldown;
+    public static float SuperAttackTimer;
 
     private void Start()
     {
         Player = GameObject.FindGameObjectWithTag("Player");
-        SuperAttackCooldown = SuperAttackTimer;
+        SuperAttackTimer = SuperAttackCooldown;
 
         SwitchState(new EnemyIdleState(this));
     }
 
     public void ResetSuperAttackTimer()
     {
-        SuperAttackCooldown = SuperAttackTimer;
+        SuperAttackTimer = SuperAttackCooldown;
     }
 
     public void Attack()

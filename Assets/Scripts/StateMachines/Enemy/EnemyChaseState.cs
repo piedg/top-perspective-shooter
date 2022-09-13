@@ -19,14 +19,14 @@ public class EnemyChasingState : EnemyBaseState
 
     public override void Tick(float deltaTime)
     {
-        EnemyStateMachine.SuperAttackCooldown -= deltaTime;
+        EnemyStateMachine.SuperAttackTimer -= deltaTime;
 
         if (!IsInChaseRange())
         {
             stateMachine.SwitchState(new EnemyIdleState(stateMachine));
             return;
         }
-        else if (EnemyStateMachine.SuperAttackCooldown <= 0f)
+        else if (EnemyStateMachine.SuperAttackTimer <= 0f)
         {
             stateMachine.SwitchState(new EnemySuperAttackState(stateMachine));
             return;
