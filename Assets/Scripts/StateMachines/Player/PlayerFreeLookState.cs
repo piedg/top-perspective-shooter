@@ -29,13 +29,14 @@ public class PlayerFreeLookState : PlayerBaseState
         direction = (stateMachine.InputManager.MovementValue.y * Vector3.forward) + (stateMachine.InputManager.MovementValue.x * Vector3.right);
         direction.Normalize();
 
+        OnShoot();
+
         Move(direction * stateMachine.DefaultMovementSpeed, deltaTime);
 
         ConvertDirection(direction);
 
         FaceToMouse();
 
-        OnShoot();
 
         stateMachine.Animator.SetFloat(FreeLookForwardHash, forwardAmount);
         stateMachine.Animator.SetFloat(FreeLookRightHash, rightAmount);
@@ -61,18 +62,20 @@ public class PlayerFreeLookState : PlayerBaseState
 
     private void FaceToMouse()
     {
+
         // Handle player rotation to mouse position
-          Ray ray = Camera.main.ScreenPointToRay(stateMachine.InputManager.MouseValue);
+        Ray ray = Camera.main.ScreenPointToRay(stateMachine.InputManager.MouseValue);
+        Debug.DrawRay(ray.origin, ray.direction, Color.red);
           Plane virtualPlane = new Plane(Vector3.up, stateMachine.transform.position);
           if (virtualPlane.Raycast(ray, out float hitDist))
           {
               Vector3 hitPoint = ray.GetPoint(hitDist);
               stateMachine.transform.LookAt(hitPoint);
-          } 
+          }
 
-          //For Gamepad
-       /* Vector3 direction = new Vector3(stateMachine.InputManager.MouseValue.x, 0, stateMachine.InputManager.MouseValue.y); //if you're 2d side scroller, you need to swap 2nd and 3rd value.
-        stateMachine.transform.rotation = Quaternion.LookRotation(direction); */
+        //For Gamepad
+        /* Vector3 direction = new Vector3(stateMachine.InputManager.MouseValue.x, 0, stateMachine.InputManager.MouseValue.y); //if you're 2d side scroller, you need to swap 2nd and 3rd value.
+         stateMachine.transform.rotation = Quaternion.LookRotation(direction); */
 
     }
 

@@ -1472,6 +1472,7 @@ MonoBehaviour:
   <Controller>k__BackingField: {fileID: 6386026016918638788}
   <InputManager>k__BackingField: {fileID: 6386026016918638786}
   <Animator>k__BackingField: {fileID: 1044716398198868671}
+  <Health>k__BackingField: {fileID: 0}
   <DefaultMovementSpeed>k__BackingField: 6
   <DefaultRotationSpeed>k__BackingField: 5
   <DodgeDuration>k__BackingField: 0.75
@@ -2439,9 +2440,17 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.552
       objectReference: {fileID: 0}
+    - target: {fileID: 4692028169629622637, guid: ff6df204b03ab41cda20f9a07283965f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4692172288311116017, guid: ff6df204b03ab41cda20f9a07283965f, type: 3}
       propertyPath: m_Name
       value: SM_Wep_Shotgun_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 4692184029113376321, guid: ff6df204b03ab41cda20f9a07283965f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff6df204b03ab41cda20f9a07283965f, type: 3}

@@ -12,9 +12,9 @@ public class Projectile : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        ShootDirection();
+        rb.velocity = transform.forward * speed;
     }
 
     void OnEnable()
@@ -26,12 +26,6 @@ public class Projectile : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         gameObject.SetActive(false);
-    }
-
-    void ShootDirection()
-    {
-        rb.velocity = transform.forward * speed;
-
     }
 
     public void OnHit()
