@@ -17,7 +17,6 @@ public class EnemyJumpImpactState : EnemyBaseState
 
     public override void Tick(float deltaTime)
     {
-
         Move(deltaTime);
 
         if (GetNormalizedTime(stateMachine.Animator, "SuperAttackImpact") >= 1)

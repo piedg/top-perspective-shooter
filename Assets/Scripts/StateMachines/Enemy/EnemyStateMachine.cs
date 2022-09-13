@@ -22,7 +22,6 @@ public class EnemyStateMachine : StateMachine
     [field: SerializeField] public int AttackDamage { get; private set; }
 
     public GameObject Player { get; private set; }
-    public bool HasGroundedImpact { get; private set; }
 
     public static float SuperAttackCooldown;
 
@@ -41,13 +40,11 @@ public class EnemyStateMachine : StateMachine
 
     public void Attack()
     {
-        HasGroundedImpact = true;
         AttackPoint.gameObject.SetActive(true);
     }
 
     public void FinishAttack()
     {
-        HasGroundedImpact = false;
         AttackPoint.gameObject.SetActive(false);
     }
 
