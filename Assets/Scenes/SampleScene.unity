@@ -780,6 +780,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Controller>k__BackingField: {fileID: 487999465}
   <Animator>k__BackingField: {fileID: 487999466}
+  <Health>k__BackingField: {fileID: 487999468}
   <PlayerChasingRange>k__BackingField: 25
   <Agent>k__BackingField: {fileID: 487999463}
   <MovementSpeed>k__BackingField: 5

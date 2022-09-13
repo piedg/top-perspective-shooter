@@ -8,6 +8,7 @@ public class EnemyStateMachine : StateMachine
     [field: SerializeField, Header("Main Components")]
     public CharacterController Controller { get; private set; }
     [field: SerializeField] public Animator Animator { get; private set; }
+    [field: SerializeField] public Health Health { get; private set; }
     [field: SerializeField] public float PlayerChasingRange { get; private set; }
     [field: SerializeField] public NavMeshAgent Agent { get; private set; }
     [field: SerializeField] public float MovementSpeed { get; private set; }
@@ -44,5 +45,23 @@ public class EnemyStateMachine : StateMachine
     public void FinishAttack()
     {
         AttackPoint.gameObject.SetActive(false);
+    }
+
+    private void OnEnable()
+    {
+        //Health.OnTakeDamage += HandleTakeDamage;
+        Health.OnDie += HandleDie;
+    }
+
+    private void OnDisable()
+    {
+        //Health.OnTakeDamage -= HandleTakeDamage;
+        Health.OnDie -= HandleDie;
+    }
+
+    private void HandleDie()
+    {
+        // TODO: switch to Die State
+        SwitchState(new EnemyDeathState(this));
     }
 }
