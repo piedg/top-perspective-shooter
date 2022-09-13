@@ -20,7 +20,7 @@ public class PlayerStateMachine : StateMachine
     [field: SerializeField] public float FireRate { get; private set; }
     [field: SerializeField] public int WeaponDamage { get; private set; }
     [field: SerializeField] public ObjectPool ProjectilePool { get; private set; }
-    [field: SerializeField, Header("Physic")] public ForceReceiver ForceReceiver { get; private set; }
+    [field: SerializeField, Header("Physics")] public ForceReceiver ForceReceiver { get; private set; }
 
     private void Start()
     {

@@ -62,7 +62,6 @@ public class PlayerFreeLookState : PlayerBaseState
 
     private void FaceToMouse()
     {
-
         // Handle player rotation to mouse position
         Ray ray = Camera.main.ScreenPointToRay(stateMachine.InputManager.MouseValue);
         Debug.DrawRay(ray.origin, ray.direction, Color.red);
@@ -71,7 +70,7 @@ public class PlayerFreeLookState : PlayerBaseState
           {
               Vector3 hitPoint = ray.GetPoint(hitDist);
               stateMachine.transform.LookAt(hitPoint);
-          }
+          } 
 
         // Gamepad
         /* Vector3 direction = new Vector3(stateMachine.InputManager.MouseValue.x, 0, stateMachine.InputManager.MouseValue.y);
