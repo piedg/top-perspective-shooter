@@ -24,7 +24,7 @@ public class Damage : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other == CharacterCollider) { return; }
+        if (other == CharacterCollider && CharacterCollider != null) { return; }
 
         if (alreadyCollidedWith.Contains(other)) { return; }
 
@@ -36,12 +36,7 @@ public class Damage : MonoBehaviour
             health.DealDamage(damage);
         }
 
-        if (other.TryGetComponent<ForceReceiver>(out ForceReceiver forceReceiver))
-        {
-            Vector3 direction = (other.transform.position - CharacterCollider.transform.position).normalized;
-            
-            //forceReceiver.AddForce(direction * knockback);
-        }
+      
     }
 
     public void SetAttack(int damage, float radius = 1.8f, bool isSuperAttack = false)
@@ -49,6 +44,5 @@ public class Damage : MonoBehaviour
         this.damage = damage;
         this.radius = radius;
         this.isSuperAttack = isSuperAttack;
-
     }
 }

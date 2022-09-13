@@ -97,6 +97,8 @@ public class PlayerFreeLookState : PlayerBaseState
             //Set missile 
             bullet.transform.SetPositionAndRotation(stateMachine.FirePoint.transform.position, stateMachine.FirePoint.transform.rotation);
 
+            bullet.GetComponent<Damage>().SetAttack(stateMachine.WeaponDamage);
+
             //Active from Pool
             bullet.SetActive(true);
         }
