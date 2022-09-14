@@ -422,6 +422,10 @@ PrefabInstance:
       propertyPath: <ProjectilePool>k__BackingField
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 6386026016918638787, guid: c558fb1c973ef4ec48a70a69fb1dc6bd, type: 3}
+      propertyPath: <DefaultRotationSpeed>k__BackingField
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 6386026016918638788, guid: c558fb1c973ef4ec48a70a69fb1dc6bd, type: 3}
       propertyPath: m_Center.y
       value: 0.95

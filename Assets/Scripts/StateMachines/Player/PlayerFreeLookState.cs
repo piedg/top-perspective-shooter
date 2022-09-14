@@ -20,7 +20,6 @@ public class PlayerFreeLookState : PlayerBaseState
     public override void Enter()
     {
         stateMachine.InputManager.DodgeEvent += OnDodge;
-
         stateMachine.Animator.CrossFadeInFixedTime(FreeLookBlendTreeHash, CrossFadeDuration);
     }
 
@@ -30,12 +29,11 @@ public class PlayerFreeLookState : PlayerBaseState
 
         direction.Normalize();
 
-
         ConvertDirection(direction);
 
         Move(direction * stateMachine.DefaultMovementSpeed, deltaTime);
 
-        FaceToMouse();
+        FaceToMouse(deltaTime);
 
         OnShoot();
 
@@ -60,7 +58,7 @@ public class PlayerFreeLookState : PlayerBaseState
         forwardAmount = localMove.z;
     }
 
-    private void FaceToMouse()
+    private void FaceToMouse(float deltaTime)
     {
         // Handle player rotation to mouse position
         Ray ray = Camera.main.ScreenPointToRay(stateMachine.InputManager.MouseValue);
@@ -69,7 +67,11 @@ public class PlayerFreeLookState : PlayerBaseState
           if (virtualPlane.Raycast(ray, out float hitDist))
           {
               Vector3 hitPoint = ray.GetPoint(hitDist);
-              stateMachine.transform.LookAt(hitPoint);
+
+            var targetRotation = Quaternion.LookRotation(hitPoint - stateMachine.transform.position);
+
+            // Smoothly rotate towards the target point.
+            stateMachine.transform.rotation = Quaternion.Slerp(stateMachine.transform.rotation, targetRotation, stateMachine.DefaultRotationSpeed * deltaTime);
           } 
 
         // Gamepad
