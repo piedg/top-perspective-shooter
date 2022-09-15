@@ -22,4 +22,9 @@ public abstract class PlayerBaseState : State
         // Handle player CharacterController Move method
         stateMachine.Controller.Move((direction + stateMachine.ForceReceiver.Movement) * deltaTime);
     }
+
+    protected bool HasDodge()
+    {
+        return stateMachine.CooldownManager.CooldownTimeRemaining(stateMachine.DodgeCooldown.ToString()) <= 0f;
+    }
 }

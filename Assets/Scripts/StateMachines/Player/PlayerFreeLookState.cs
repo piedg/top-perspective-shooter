@@ -82,7 +82,8 @@ public class PlayerFreeLookState : PlayerBaseState
 
     private void OnDodge()
     {
-        stateMachine.SwitchState(new PlayerDodgeState(stateMachine, direction));
+        if(HasDodge())
+            stateMachine.SwitchState(new PlayerDodgeState(stateMachine, direction));
     }
 
     private void OnShoot()

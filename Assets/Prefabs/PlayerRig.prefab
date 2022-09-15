@@ -419,9 +419,17 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6386026016918638787, guid: c558fb1c973ef4ec48a70a69fb1dc6bd, type: 3}
+      propertyPath: <DodgeCooldown>k__BackingField
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6386026016918638787, guid: c558fb1c973ef4ec48a70a69fb1dc6bd, type: 3}
       propertyPath: <ProjectilePool>k__BackingField
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 6386026016918638787, guid: c558fb1c973ef4ec48a70a69fb1dc6bd, type: 3}
+      propertyPath: <CooldownManager>k__BackingField
+      value: 
+      objectReference: {fileID: 2110249350}
     - target: {fileID: 6386026016918638787, guid: c558fb1c973ef4ec48a70a69fb1dc6bd, type: 3}
       propertyPath: <DefaultRotationSpeed>k__BackingField
       value: 12
@@ -602,6 +610,18 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6040567896800152191, guid: c558fb1c973ef4ec48a70a69fb1dc6bd, type: 3}
   m_PrefabInstance: {fileID: 6743190346099681918}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2110249350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1027092963932217345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b85ee85695909324e8afbb198748554e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &6863408530021034696
 MonoBehaviour:
   m_ObjectHideFlags: 0
