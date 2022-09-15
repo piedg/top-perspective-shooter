@@ -14,7 +14,6 @@ public class PlayerStateMachine : StateMachine
     [field: SerializeField] public float DodgeForce { get; private set; } = 0.75f;
     [field: SerializeField] public float DefaultRotationSpeed { get; private set; }
 
-
     [field: SerializeField, Header("Shooting Settings")]
     public Transform FirePoint { get; private set; }
     [field: SerializeField] public float FireRate { get; private set; }

@@ -11,6 +11,7 @@ public class EnemyStateMachine : StateMachine
     [field: SerializeField] public Health Health { get; private set; }
     [field: SerializeField] public ForceReceiver ForceReceiver { get; private set; }
     [field: SerializeField] public NavMeshAgent Agent { get; private set; }
+    [field: SerializeField] public CooldownManager CooldownManager { get; private set; }
     [field: SerializeField, Header("Movement Settings")] public float PlayerChasingRange { get; private set; }
     [field: SerializeField] public float MovementSpeed { get; private set; }
     [field: SerializeField, Header("Attack Settings")] public Damage AttackPoint { get; private set; }
@@ -19,23 +20,14 @@ public class EnemyStateMachine : StateMachine
     [field: SerializeField] public int SuperAttackRange { get; private set; }
     [field: SerializeField] public int SuperAttackDamage { get; private set; }
     [field: SerializeField] public float JumpForce { get; private set; }
-    [field: SerializeField] public float SuperAttackCooldown { get; private set; }
+    [field: SerializeField] public float JumpAttackCooldown { get; private set; }
 
     public GameObject Player { get; private set; }
-
-    public static float SuperAttackTimer;
 
     private void Start()
     {
         Player = GameObject.FindGameObjectWithTag("Player");
-        SuperAttackTimer = SuperAttackCooldown;
-
         SwitchState(new EnemyIdleState(this));
-    }
-
-    public void ResetSuperAttackTimer()
-    {
-        SuperAttackTimer = SuperAttackCooldown;
     }
 
     public void Attack()

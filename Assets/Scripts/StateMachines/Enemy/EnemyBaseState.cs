@@ -48,5 +48,9 @@ public abstract class EnemyBaseState : State
         //return Vector3.Distance(stateMachine.transform.position, stateMachine.Player.transform.position) <= stateMachine.PlayerChasingRange;
     }
 
+    protected bool HasJumpAttack()
+    {
+        return stateMachine.CooldownManager.CooldownTimeRemaining(stateMachine.JumpAttackCooldown.ToString()) <= 0;
+    }
 
 }

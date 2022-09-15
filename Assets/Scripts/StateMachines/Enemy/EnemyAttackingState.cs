@@ -17,11 +17,9 @@ public class EnemyAttackingState : EnemyBaseState
 
     public override void Tick(float deltaTime)
     {
-        EnemyStateMachine.SuperAttackTimer -= deltaTime;
-
-        if (EnemyStateMachine.SuperAttackTimer <= 0f)
+        if (HasJumpAttack())
         {
-            stateMachine.SwitchState(new EnemySuperAttackState(stateMachine));
+            stateMachine.SwitchState(new EnemyJumpAttackState(stateMachine));
             return;
         }
 

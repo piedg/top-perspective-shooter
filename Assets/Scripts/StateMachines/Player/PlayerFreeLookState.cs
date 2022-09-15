@@ -61,12 +61,13 @@ public class PlayerFreeLookState : PlayerBaseState
     private void FaceToMouse(float deltaTime)
     {
         // Handle player rotation to mouse position
-        Ray ray = Camera.main.ScreenPointToRay(stateMachine.InputManager.MouseValue);
-        Debug.DrawRay(ray.origin, ray.direction, Color.red);
+          Ray ray = Camera.main.ScreenPointToRay(stateMachine.InputManager.MouseValue);
+
           Plane virtualPlane = new Plane(Vector3.up, stateMachine.transform.position);
+
           if (virtualPlane.Raycast(ray, out float hitDist))
           {
-              Vector3 hitPoint = ray.GetPoint(hitDist);
+            Vector3 hitPoint = ray.GetPoint(hitDist);
 
             var targetRotation = Quaternion.LookRotation(hitPoint - stateMachine.transform.position);
 
@@ -77,7 +78,6 @@ public class PlayerFreeLookState : PlayerBaseState
         // Gamepad
         /* Vector3 direction = new Vector3(stateMachine.InputManager.MouseValue.x, 0, stateMachine.InputManager.MouseValue.y);
          stateMachine.transform.rotation = Quaternion.LookRotation(direction); */
-
     }
 
     private void OnDodge()

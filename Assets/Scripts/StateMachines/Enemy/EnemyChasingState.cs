@@ -14,23 +14,24 @@ public class EnemyChasingState : EnemyBaseState
 
     public override void Enter()
     {
+        if (!stateMachine.CooldownManager.CooldownActive(stateMachine.JumpAttackCooldown.ToString()))
+            stateMachine.CooldownManager.BeginCooldown(stateMachine.JumpAttackCooldown.ToString(), stateMachine.JumpAttackCooldown);
+
         stateMachine.Animator.CrossFadeInFixedTime(LocomotionHash, CrossFadeduration);
     }
 
     public override void Tick(float deltaTime)
     {
-        EnemyStateMachine.SuperAttackTimer -= deltaTime;
-
         if (!IsInChaseRange())
         {
             stateMachine.SwitchState(new EnemyIdleState(stateMachine));
             return;
         }
-        else if (EnemyStateMachine.SuperAttackTimer <= 0f)
+        else if (HasJumpAttack())
         {
-            stateMachine.SwitchState(new EnemySuperAttackState(stateMachine));
+            stateMachine.SwitchState(new EnemyJumpAttackState(stateMachine));
             return;
-        }
+        } 
         else if (IsInAttackRange())
         {
             stateMachine.SwitchState(new EnemyAttackingState(stateMachine));

@@ -27,7 +27,6 @@ public class EnemyJumpImpactState : EnemyBaseState
 
     public override void Exit() 
     {
-        stateMachine.ResetSuperAttackTimer();
+        stateMachine.CooldownManager.BeginCooldown(stateMachine.JumpAttackCooldown.ToString(), stateMachine.JumpAttackCooldown);
     }
-
 }
