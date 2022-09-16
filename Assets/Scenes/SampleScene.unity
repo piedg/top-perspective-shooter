@@ -2330,22 +2330,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3614213290449761332, guid: 5cee7b011e3aa004493b72a25bbac12a, type: 3}
-      propertyPath: m_Radius
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3614213290449761333, guid: 5cee7b011e3aa004493b72a25bbac12a, type: 3}
-      propertyPath: <JumpForce>k__BackingField
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3614213290449761333, guid: 5cee7b011e3aa004493b72a25bbac12a, type: 3}
-      propertyPath: <AttackRange>k__BackingField
-      value: 3.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3614213290449761333, guid: 5cee7b011e3aa004493b72a25bbac12a, type: 3}
-      propertyPath: <RotationSpeed>k__BackingField
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 3614213290449761336, guid: 5cee7b011e3aa004493b72a25bbac12a, type: 3}
       propertyPath: m_Name
       value: Enemy
@@ -2454,10 +2438,6 @@ PrefabInstance:
     - target: {fileID: 6499994464831390551, guid: b287de1827cdb214dadc7e38649ee3a0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6863408530021034696, guid: b287de1827cdb214dadc7e38649ee3a0, type: 3}
-      propertyPath: maxHealth
-      value: 200
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b287de1827cdb214dadc7e38649ee3a0, type: 3}
