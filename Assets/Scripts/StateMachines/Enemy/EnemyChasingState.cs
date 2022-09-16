@@ -29,7 +29,7 @@ public class EnemyChasingState : EnemyBaseState
         }
         else if (HasJumpAttack())
         {
-            stateMachine.SwitchState(new EnemyJumpAttackState(stateMachine, deltaTime));
+            stateMachine.SwitchState(new EnemyJumpAttackState(stateMachine));
             return;
         } 
         else if (IsInAttackRange())
@@ -39,7 +39,7 @@ public class EnemyChasingState : EnemyBaseState
         }
 
         MoveToPlayer(deltaTime);
-        FaceToPlayer(deltaTime);
+        RotateToPlayer(deltaTime);
 
         stateMachine.Animator.SetFloat(SpeedHash, 1f, AnimatorDumpTime, deltaTime);
     }

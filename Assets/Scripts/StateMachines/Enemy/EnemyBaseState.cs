@@ -27,18 +27,21 @@ public abstract class EnemyBaseState : State
         stateMachine.Controller.Move(stateMachine.transform.forward * stateMachine.JumpForce * deltaTime);
     }
 
-    protected void FaceToPlayer(float deltaTime)
+    protected void FaceToPlayer()
     {
         if (stateMachine.Player == null) { return; }
 
         Vector3 lookPos = stateMachine.Player.transform.position - stateMachine.transform.position;
         lookPos.y = 0f;
 
-        //stateMachine.transform.rotation = Quaternion.LookRotation(lookPos);
+        stateMachine.transform.rotation = Quaternion.LookRotation(lookPos);
+    }
+    protected void RotateToPlayer(float deltaTime)
+    {
+        if (stateMachine.Player == null) { return; }
 
         var targetRotation = Quaternion.LookRotation(stateMachine.Player.transform.position - stateMachine.transform.position);
 
-        // Smoothly rotate towards the target point.
         stateMachine.transform.rotation = Quaternion.Slerp(stateMachine.transform.rotation, targetRotation, stateMachine.RotationSpeed * deltaTime);
     }
 

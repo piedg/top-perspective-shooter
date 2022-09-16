@@ -4,24 +4,22 @@ using UnityEngine;
 
 public class PlayerStateMachine : StateMachine
 {
-    [field: SerializeField, Header("Main Components")]
-    public CharacterController Controller { get; private set; }
+    [field: SerializeField, Header("Main Components")] public CharacterController Controller { get; private set; }
     [field: SerializeField] public InputManager InputManager { get; private set; }
     [field: SerializeField] public Animator Animator { get; private set; }
     [field: SerializeField] public Health Health { get; private set; }
+    [field: SerializeField] public ForceReceiver ForceReceiver { get; private set; }
     [field: SerializeField] public CooldownManager CooldownManager { get; private set; }
     [field: SerializeField, Header("Movement Settings")] public float DefaultMovementSpeed { get; private set; }
-    [field: SerializeField, Header("Dodge Settings")] public float DodgeDuration { get; private set; }
-    [field: SerializeField] public float DodgeCooldown { get; private set; }
-    [field: SerializeField] public float DodgeForce { get; private set; } = 0.75f;
+    [field: SerializeField, Header("Dodge Settings")] public float DodgeCooldown { get; private set; }
+    [field: SerializeField] public float DodgeForce { get; private set; }
     [field: SerializeField] public float DefaultRotationSpeed { get; private set; }
-
-    [field: SerializeField, Header("Shooting Settings")]
-    public Transform FirePoint { get; private set; }
+    [field: SerializeField, Header("Shooting Settings")]public Transform FirePoint { get; private set; }
     [field: SerializeField] public float FireRate { get; private set; }
     [field: SerializeField] public int WeaponDamage { get; private set; }
     [field: SerializeField] public ObjectPool ProjectilePool { get; private set; }
-    [field: SerializeField, Header("Physics")] public ForceReceiver ForceReceiver { get; private set; }
+
+    public float DodgeDuration { get; private set; } = 0.75f;
 
     private void Start()
     {

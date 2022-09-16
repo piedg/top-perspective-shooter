@@ -1,21 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class EnemyJumpAttackState : EnemyBaseState
 {
     private readonly int JumpHash = Animator.StringToHash("Jump");
 
     private const float TransitionDuration = 0.1f;
-    float deltaTimeBeforeJump;
 
-    public EnemyJumpAttackState(EnemyStateMachine stateMachine, float deltaTime) : base(stateMachine) {
-        deltaTimeBeforeJump = deltaTime;
-    }
+    public EnemyJumpAttackState(EnemyStateMachine stateMachine) : base(stateMachine) { }
 
     public override void Enter()
     {
-        FaceToPlayer(deltaTimeBeforeJump);
+        FaceToPlayer();
+
         stateMachine.AttackPoint.SetAttack(stateMachine.SuperAttackDamage, stateMachine.SuperAttackRange, true);
         stateMachine.Animator.CrossFadeInFixedTime(JumpHash, TransitionDuration);
     }
