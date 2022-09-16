@@ -137,12 +137,13 @@ MonoBehaviour:
   <CooldownManager>k__BackingField: {fileID: 845031525}
   <PlayerChasingRange>k__BackingField: 25
   <MovementSpeed>k__BackingField: 5
+  <RotationSpeed>k__BackingField: 3
   <AttackPoint>k__BackingField: {fileID: 3614213289807236025}
   <AttackRange>k__BackingField: 3
   <AttackDamage>k__BackingField: 25
-  <SuperAttackRange>k__BackingField: 5
+  <SuperAttackRange>k__BackingField: 6
   <SuperAttackDamage>k__BackingField: 50
-  <JumpForce>k__BackingField: 6
+  <JumpForce>k__BackingField: 5
   <JumpAttackCooldown>k__BackingField: 5
 --- !u!114 &3614213290449761329
 MonoBehaviour:

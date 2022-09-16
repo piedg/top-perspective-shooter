@@ -11,18 +11,20 @@ public class EnemyJumpImpactState : EnemyBaseState
 
     public override void Enter()
     {
-
+        stateMachine.AttackPoint.gameObject.SetActive(true);
         stateMachine.Animator.CrossFadeInFixedTime(JumpImpactHash, TransitionDuration);
     }
 
     public override void Tick(float deltaTime)
     {
+        stateMachine.AttackPoint.gameObject.SetActive(false);
+
         Move(deltaTime);
 
-        if (GetNormalizedTime(stateMachine.Animator, "SuperAttackImpact") >= 1)
-        {
-            stateMachine.SwitchState(new EnemyChasingState(stateMachine));
-        }
+        if (IsPlayingAnimation(stateMachine.Animator)) { return; }
+
+
+        stateMachine.SwitchState(new EnemyChasingState(stateMachine));
     }
 
     public override void Exit() 

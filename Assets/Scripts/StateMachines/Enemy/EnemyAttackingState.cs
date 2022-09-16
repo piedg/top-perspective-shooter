@@ -17,18 +17,17 @@ public class EnemyAttackingState : EnemyBaseState
 
     public override void Tick(float deltaTime)
     {
+        if (IsPlayingAnimation(stateMachine.Animator)) { return; }
+
         if (HasJumpAttack())
         {
-            stateMachine.SwitchState(new EnemyJumpAttackState(stateMachine));
+            stateMachine.SwitchState(new EnemyJumpAttackState(stateMachine, deltaTime));
             return;
         }
 
-        if (GetNormalizedTime(stateMachine.Animator, "Attack") >= 1)
-        {
-            stateMachine.SwitchState(new EnemyChasingState(stateMachine));
-        }
+        stateMachine.SwitchState(new EnemyChasingState(stateMachine));
 
-        FaceToPlayer();
+        FaceToPlayer(deltaTime);
     }
 
     public override void Exit() { }

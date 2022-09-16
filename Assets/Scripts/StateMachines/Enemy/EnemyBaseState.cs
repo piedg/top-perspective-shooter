@@ -27,14 +27,19 @@ public abstract class EnemyBaseState : State
         stateMachine.Controller.Move(stateMachine.transform.forward * stateMachine.JumpForce * deltaTime);
     }
 
-    protected void FaceToPlayer()
+    protected void FaceToPlayer(float deltaTime)
     {
         if (stateMachine.Player == null) { return; }
 
         Vector3 lookPos = stateMachine.Player.transform.position - stateMachine.transform.position;
         lookPos.y = 0f;
 
-        stateMachine.transform.rotation = Quaternion.LookRotation(lookPos);
+        //stateMachine.transform.rotation = Quaternion.LookRotation(lookPos);
+
+        var targetRotation = Quaternion.LookRotation(stateMachine.Player.transform.position - stateMachine.transform.position);
+
+        // Smoothly rotate towards the target point.
+        stateMachine.transform.rotation = Quaternion.Slerp(stateMachine.transform.rotation, targetRotation, stateMachine.RotationSpeed * deltaTime);
     }
 
     protected bool IsInChaseRange()
@@ -43,9 +48,6 @@ public abstract class EnemyBaseState : State
 
         float playerDistanceSqr = (stateMachine.Player.transform.position - stateMachine.transform.position).sqrMagnitude;
         return playerDistanceSqr <= stateMachine.PlayerChasingRange * stateMachine.PlayerChasingRange;
-
-        // meno performante (?)
-        //return Vector3.Distance(stateMachine.transform.position, stateMachine.Player.transform.position) <= stateMachine.PlayerChasingRange;
     }
 
     protected bool HasJumpAttack()

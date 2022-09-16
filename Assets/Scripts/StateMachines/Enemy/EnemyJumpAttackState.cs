@@ -5,14 +5,17 @@ using UnityEngine;
 public class EnemyJumpAttackState : EnemyBaseState
 {
     private readonly int JumpHash = Animator.StringToHash("Jump");
-    private readonly int SuperAttackHash = Animator.StringToHash("SuperAttack");
 
     private const float TransitionDuration = 0.1f;
+    float deltaTimeBeforeJump;
 
-    public EnemyJumpAttackState(EnemyStateMachine stateMachine) : base(stateMachine) { }
+    public EnemyJumpAttackState(EnemyStateMachine stateMachine, float deltaTime) : base(stateMachine) {
+        deltaTimeBeforeJump = deltaTime;
+    }
 
     public override void Enter()
     {
+        FaceToPlayer(deltaTimeBeforeJump);
         stateMachine.AttackPoint.SetAttack(stateMachine.SuperAttackDamage, stateMachine.SuperAttackRange, true);
         stateMachine.Animator.CrossFadeInFixedTime(JumpHash, TransitionDuration);
     }
@@ -21,11 +24,9 @@ public class EnemyJumpAttackState : EnemyBaseState
     {
          MoveForward(deltaTime);
 
-        if (GetNormalizedTime(stateMachine.Animator, "SuperAttackJump") >= 1)
-        {
-          
-            stateMachine.SwitchState(new EnemyJumpImpactState(stateMachine));
-        }
+        if (IsPlayingAnimation(stateMachine.Animator)) { return; }
+        
+        stateMachine.SwitchState(new EnemyJumpImpactState(stateMachine));
     }
 
     public override void Exit() { }
