@@ -25,6 +25,7 @@ public class EnemyStateMachine : StateMachine
     [field: SerializeField] public float MissileAttackCooldown { get; private set; }
     [field: SerializeField] public Transform MissileSpawnPoint { get; private set; }
     [field: SerializeField] public GameObject MissileFX { get; private set; }
+    [field: SerializeField] public GameObject MissileArea { get; private set; }
 
 
     public GameObject Player { get; private set; }

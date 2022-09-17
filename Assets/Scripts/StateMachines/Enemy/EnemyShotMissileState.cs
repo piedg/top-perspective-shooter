@@ -13,6 +13,7 @@ public class EnemyShotMissileState : EnemyBaseState
     [SerializeField][Range(0, 1)] float movementFactor = 1f;
     [SerializeField] float period = 0.1f;
     bool isParticleSpawned = false;
+    bool isMissilesSpawned = false;
 
     public EnemyShotMissileState(EnemyStateMachine stateMachine) : base(stateMachine) { }
 
@@ -30,7 +31,10 @@ public class EnemyShotMissileState : EnemyBaseState
             Flicking();
             if (!isParticleSpawned) SpawnMissileFX() ;
 
-            return; }
+            return; 
+        }
+
+        if (!isMissilesSpawned) SpawnDamageArea();
 
         if(stateMachine.Animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f) { return; }
 
@@ -45,9 +49,21 @@ public class EnemyShotMissileState : EnemyBaseState
 
     void SpawnMissileFX()
     {
-        Debug.Log("Sparo il missile");
         GameObject.Instantiate(stateMachine.MissileFX, stateMachine.MissileSpawnPoint.position, Quaternion.identity);
         isParticleSpawned = true;
+    }
+
+    void SpawnDamageArea()
+    {
+        for (int i = 0; i < Random.Range(3f, 9f); i++)
+        {
+            float offsetX = Random.Range(-5f - i, 5f + i);
+            float offsetZ = Random.Range(-5f - i, 5f + i);
+
+           GameObject area = GameObject.Instantiate(stateMachine.MissileArea, new Vector3(stateMachine.Player.transform.position.x + offsetX, 1f, stateMachine.Player.transform.position.z + offsetZ), Quaternion.identity);
+           GameObject.Destroy(area, 5f);
+        }
+        isMissilesSpawned = true;
     }
 
     void Flicking()

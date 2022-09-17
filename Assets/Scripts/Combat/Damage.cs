@@ -34,7 +34,6 @@ public class Damage : MonoBehaviour
         {
             health.DealDamage(damage);
         }
-      
     }
 
     public void SetAttack(int damage, float radius = 1.8f, bool isSuperAttack = false)
