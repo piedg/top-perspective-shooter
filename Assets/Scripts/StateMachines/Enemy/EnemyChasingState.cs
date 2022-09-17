@@ -17,6 +17,9 @@ public class EnemyChasingState : EnemyBaseState
         if (!stateMachine.CooldownManager.CooldownActive(stateMachine.JumpAttackCooldown.ToString()))
             stateMachine.CooldownManager.BeginCooldown(stateMachine.JumpAttackCooldown.ToString(), stateMachine.JumpAttackCooldown);
 
+        if (!stateMachine.CooldownManager.CooldownActive(stateMachine.MissileAttackCooldown.ToString()))
+            stateMachine.CooldownManager.BeginCooldown(stateMachine.MissileAttackCooldown.ToString(), stateMachine.MissileAttackCooldown);
+
         stateMachine.Animator.CrossFadeInFixedTime(LocomotionHash, CrossFadeduration);
     }
 
@@ -31,12 +34,18 @@ public class EnemyChasingState : EnemyBaseState
         {
             stateMachine.SwitchState(new EnemyJumpAttackState(stateMachine));
             return;
-        } 
+        }
+        else if (HasMissileAttack())
+        {
+            stateMachine.SwitchState(new EnemyShotMissileState(stateMachine));
+            return;
+        }
         else if (IsInAttackRange())
         {
             stateMachine.SwitchState(new EnemyAttackingState(stateMachine));
             return;
         }
+
 
         MoveToPlayer(deltaTime);
         RotateToPlayer(deltaTime);

@@ -58,4 +58,9 @@ public abstract class EnemyBaseState : State
         return stateMachine.CooldownManager.CooldownTimeRemaining(stateMachine.JumpAttackCooldown.ToString()) <= 0;
     }
 
+    protected bool HasMissileAttack()
+    {
+        return stateMachine.CooldownManager.CooldownTimeRemaining(stateMachine.MissileAttackCooldown.ToString()) <= 0;
+    }
+
 }

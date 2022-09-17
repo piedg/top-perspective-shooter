@@ -144,7 +144,10 @@ MonoBehaviour:
   <SuperAttackRange>k__BackingField: 6
   <SuperAttackDamage>k__BackingField: 50
   <JumpForce>k__BackingField: 4
-  <JumpAttackCooldown>k__BackingField: 5
+  <JumpAttackCooldown>k__BackingField: 9999
+  <MissileAttackCooldown>k__BackingField: 2
+  <MissileSpawnPoint>k__BackingField: {fileID: 4119399078002257300}
+  <MissileFX>k__BackingField: {fileID: 4973409807527333940, guid: 7eeed3d2bcc593247b3fac55a8b1d868, type: 3}
 --- !u!114 &3614213290449761329
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -745,6 +748,7 @@ Transform:
   - {fileID: 3613620057016343224}
   - {fileID: 3613939573621379448}
   - {fileID: 3613942840903888266}
+  - {fileID: 4119399078002257300}
   m_Father: {fileID: 3614123842077476192}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3309,3 +3313,34 @@ Transform:
   m_Father: {fileID: 3618992242020904974}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7676316464485260609
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4119399078002257300}
+  m_Layer: 0
+  m_Name: MissileSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4119399078002257300
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7676316464485260609}
+  m_LocalRotation: {x: -0.067773156, y: -0.7038514, z: -0.067773156, w: 0.7038514}
+  m_LocalPosition: {x: -0.16, y: 0.4, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3619193466940129618}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: -11, y: -90, z: 0}
