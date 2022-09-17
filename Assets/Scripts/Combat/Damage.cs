@@ -11,7 +11,7 @@ public class Damage : MonoBehaviour
     private bool isSuperAttack;
 
     private List<Collider> alreadyCollidedWith = new List<Collider>();
-    private Vector3 startPosition = new Vector3(0f, 1f, 1f);
+    private Vector3 startPosition = new Vector3(0f, 1f, 1.5f);
 
     private void OnEnable()
     {
