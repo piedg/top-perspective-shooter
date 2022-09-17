@@ -38,9 +38,8 @@ public class EnemyShotMissileState : EnemyBaseState
 
         if (!isMissilesSpawned) SpawnDamageArea();
 
-        if(stateMachine.Animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f) { return; }
+        if(IsPlayingAnimation(stateMachine.Animator)) { return; }
 
-        Debug.Log(stateMachine.Animator.GetCurrentAnimatorStateInfo(0).normalizedTime);
         stateMachine.SwitchState(new EnemyChasingState(stateMachine));
     }
 

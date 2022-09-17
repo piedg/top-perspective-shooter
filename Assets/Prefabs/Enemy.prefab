@@ -144,10 +144,11 @@ MonoBehaviour:
   <SuperAttackRange>k__BackingField: 6
   <SuperAttackDamage>k__BackingField: 50
   <JumpForce>k__BackingField: 4
-  <JumpAttackCooldown>k__BackingField: 9999
-  <MissileAttackCooldown>k__BackingField: 2
+  <JumpAttackCooldown>k__BackingField: 10
+  <MissileAttackCooldown>k__BackingField: 5
   <MissileSpawnPoint>k__BackingField: {fileID: 4119399078002257300}
   <MissileFX>k__BackingField: {fileID: 4973409807527333940, guid: 7eeed3d2bcc593247b3fac55a8b1d868, type: 3}
+  <MissileArea>k__BackingField: {fileID: 5300561710322113238, guid: 45f4083d33c193c42b188680d9a9993a, type: 3}
 --- !u!114 &3614213290449761329
 MonoBehaviour:
   m_ObjectHideFlags: 0

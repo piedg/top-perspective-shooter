@@ -46,7 +46,6 @@ public class EnemyChasingState : EnemyBaseState
             return;
         }
 
-
         MoveToPlayer(deltaTime);
         RotateToPlayer(deltaTime);
 
