@@ -34,6 +34,8 @@ public class EnemyShotMissileState : EnemyBaseState
             return; 
         }
 
+        if (stateMachine.Animator.GetCurrentAnimatorStateInfo(0).normalizedTime < .7f) { return; }
+
         if (!isMissilesSpawned) SpawnDamageArea();
 
         if(stateMachine.Animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f) { return; }
