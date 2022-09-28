@@ -24,11 +24,14 @@ public class DamageArea : MonoBehaviour
         if(isImpact)
         {
             if(other.CompareTag("Player"))
-            alreadyCollidedWith.Add(other);
-            if (other.TryGetComponent<Health>(out Health health))
             {
-                health.DealDamage(damage);
+                alreadyCollidedWith.Add(other);
+                if (other.TryGetComponent<Health>(out Health health))
+                {
+                    health.DealDamage(damage);
+                }
             }
+
         }
     }
 

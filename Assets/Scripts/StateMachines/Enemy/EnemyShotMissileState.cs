@@ -6,8 +6,6 @@ public class EnemyShotMissileState : EnemyBaseState
 {
     private readonly int FlexingHash = Animator.StringToHash("Flexing");
 
-    private const float CrossFadeDuration = 0.1f;
-
     Vector3 startingPosition;
     Vector3 movementVector = new Vector3(0.25f, 0f ,0f);
     float movementFactor = 1f;
@@ -16,6 +14,7 @@ public class EnemyShotMissileState : EnemyBaseState
     bool areMissilesSpawned = false;
 
     int maxMissile = 10;
+    float missileSpawnRange = 3f;
 
     public EnemyShotMissileState(EnemyStateMachine stateMachine) : base(stateMachine) { }
 
@@ -61,7 +60,7 @@ public class EnemyShotMissileState : EnemyBaseState
         {
             GameObject missileArea = GameObject.Instantiate(stateMachine.MissileArea);
 
-            missileArea.transform.SetPositionAndRotation(RandomSpawnPos(stateMachine.Player.transform.position, 3f), Quaternion.identity);
+            missileArea.transform.SetPositionAndRotation(RandomSpawnPos(stateMachine.Player.transform.position, missileSpawnRange), Quaternion.identity);
         }
 
         areMissilesSpawned = true;
@@ -80,14 +79,13 @@ public class EnemyShotMissileState : EnemyBaseState
         stateMachine.transform.position = startingPosition + offset;
     }
 
-    Vector3 RandomSpawnPos(Vector3 center, float radius)
+    Vector3 RandomSpawnPos(Vector3 center, float range)
     {
         List<float> pointsX = new List<float>();
         List<float> pointsZ = new List<float>();
-        Vector3 randPos = new Vector3();
 
-        float randomX = Random.Range(center.x - radius, center.x + radius);
-        float randomZ = Random.Range(center.z - radius, center.z + radius);
+        float randomX = Random.Range(center.x - range, center.x + range);
+        float randomZ = Random.Range(center.z - range, center.z + range);
         pointsX.Add(randomX);
 
         while (pointsX.Contains(randomX) || pointsZ.Contains(randomZ))
@@ -96,7 +94,7 @@ public class EnemyShotMissileState : EnemyBaseState
             randomZ++;
         }
 
-        randPos = new Vector3(randomX, center.y + 0.25f, randomZ);
+        Vector3 randPos = new Vector3(randomX, center.y + 0.25f, randomZ);
         return randPos;
     }
 }

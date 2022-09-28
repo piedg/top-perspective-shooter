@@ -420,7 +420,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6386026016918638787, guid: c558fb1c973ef4ec48a70a69fb1dc6bd, type: 3}
       propertyPath: <DodgeCooldown>k__BackingField
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6386026016918638787, guid: c558fb1c973ef4ec48a70a69fb1dc6bd, type: 3}
       propertyPath: <ProjectilePool>k__BackingField
