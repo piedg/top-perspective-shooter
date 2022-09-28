@@ -13,9 +13,6 @@ public class EnemyShotMissileState : EnemyBaseState
     bool isParticleSpawned = false;
     bool areMissilesSpawned = false;
 
-    int maxMissile = 10;
-    float missileSpawnRange = 3f;
-
     public EnemyShotMissileState(EnemyStateMachine stateMachine) : base(stateMachine) { }
 
     public override void Enter()
@@ -56,11 +53,11 @@ public class EnemyShotMissileState : EnemyBaseState
 
     void SpawnMissileArea()
     {
-        for (int i = 0; i < maxMissile; i++)
+        for (int i = 0; i < stateMachine.MaxMissileToSpawn; i++)
         {
             GameObject missileArea = GameObject.Instantiate(stateMachine.MissileArea);
 
-            missileArea.transform.SetPositionAndRotation(RandomSpawnPos(stateMachine.Player.transform.position, missileSpawnRange), Quaternion.identity);
+            missileArea.transform.SetPositionAndRotation(RandomSpawnPos(stateMachine.Player.transform.position, stateMachine.MissileSpawnArea), Quaternion.identity);
         }
 
         areMissilesSpawned = true;

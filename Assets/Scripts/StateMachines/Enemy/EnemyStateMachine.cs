@@ -18,14 +18,18 @@ public class EnemyStateMachine : StateMachine
     [field: SerializeField, Header("Attack Settings")] public Damage AttackPoint { get; private set; }
     [field: SerializeField] public float AttackRange { get; private set; }
     [field: SerializeField] public int AttackDamage { get; private set; }
-    [field: SerializeField] public int SuperAttackRange { get; private set; }
-    [field: SerializeField] public int SuperAttackDamage { get; private set; }
+    [field: SerializeField, Header("Jump Attack Settings")] public int JumpAttackRange { get; private set; }
+    [field: SerializeField] public int JumpAttackDamage { get; private set; }
     [field: SerializeField] public float JumpForce { get; private set; }
     [field: SerializeField] public float JumpAttackCooldown { get; private set; }
-    [field: SerializeField] public float MissileAttackCooldown { get; private set; }
+    [field: SerializeField, Header("Missile Attack Settings")] public float MissileAttackCooldown { get; private set; }
     [field: SerializeField] public Transform MissileSpawnPoint { get; private set; }
     [field: SerializeField] public GameObject MissileFX { get; private set; }
     [field: SerializeField] public GameObject MissileArea { get; private set; }
+    [field: SerializeField] public float MissileSpawnArea { get; private set; }
+    [field: SerializeField] public int MaxMissileToSpawn { get; private set; }
+
+
 
 
     public GameObject Player { get; private set; }

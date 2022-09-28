@@ -13,7 +13,7 @@ public class EnemyJumpAttackState : EnemyBaseState
     {
         FaceToPlayer();
 
-        stateMachine.AttackPoint.SetAttack(stateMachine.SuperAttackDamage, stateMachine.SuperAttackRange, true);
+        stateMachine.AttackPoint.SetAttack(stateMachine.JumpAttackDamage, stateMachine.JumpAttackRange, true);
         stateMachine.Animator.CrossFadeInFixedTime(JumpHash, TransitionDuration);
     }
 
