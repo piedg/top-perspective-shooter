@@ -9,17 +9,18 @@ public class EnemyShotMissileState : EnemyBaseState
     private const float CrossFadeDuration = 0.1f;
 
     Vector3 startingPosition;
-    [SerializeField] Vector3 movementVector = new Vector3(0.25f, 0f ,0f);
-    [SerializeField][Range(0, 1)] float movementFactor = 1f;
-    [SerializeField] float period = 0.1f;
+    Vector3 movementVector = new Vector3(0.25f, 0f ,0f);
+    float movementFactor = 1f;
+    float period = 0.1f;
     bool isParticleSpawned = false;
-    bool isMissilesSpawned = false;
+    bool areMissilesSpawned = false;
+
+    int maxMissile = 10;
 
     public EnemyShotMissileState(EnemyStateMachine stateMachine) : base(stateMachine) { }
 
     public override void Enter()
     {
-        Debug.Log("Sono dentro Shot Missile");
         startingPosition = stateMachine.transform.position;
         stateMachine.Animator.Play(FlexingHash);
     }
@@ -36,7 +37,7 @@ public class EnemyShotMissileState : EnemyBaseState
 
         if (stateMachine.Animator.GetCurrentAnimatorStateInfo(0).normalizedTime < .7f) { return; }
 
-        if (!isMissilesSpawned) SpawnDamageArea();
+        if (!areMissilesSpawned) SpawnMissileArea();
 
         if(IsPlayingAnimation(stateMachine.Animator)) { return; }
 
@@ -54,17 +55,16 @@ public class EnemyShotMissileState : EnemyBaseState
         isParticleSpawned = true;
     }
 
-    void SpawnDamageArea()
+    void SpawnMissileArea()
     {
-        for (int i = 0; i < Random.Range(3f, 9f); i++)
+        for (int i = 0; i < maxMissile; i++)
         {
-            float offsetX = Random.Range(-5f - i, 5f + i);
-            float offsetZ = Random.Range(-5f - i, 5f + i);
+            GameObject missileArea = GameObject.Instantiate(stateMachine.MissileArea);
 
-           GameObject area = GameObject.Instantiate(stateMachine.MissileArea, new Vector3(stateMachine.Player.transform.position.x + offsetX, 1f, stateMachine.Player.transform.position.z + offsetZ), Quaternion.identity);
-           GameObject.Destroy(area, 5f);
+            missileArea.transform.SetPositionAndRotation(RandomSpawnPos(stateMachine.Player.transform.position, 3f), Quaternion.identity);
         }
-        isMissilesSpawned = true;
+
+        areMissilesSpawned = true;
     }
 
     void Flicking()
@@ -80,5 +80,23 @@ public class EnemyShotMissileState : EnemyBaseState
         stateMachine.transform.position = startingPosition + offset;
     }
 
-   
+    Vector3 RandomSpawnPos(Vector3 center, float radius)
+    {
+        List<float> pointsX = new List<float>();
+        List<float> pointsZ = new List<float>();
+        Vector3 randPos = new Vector3();
+
+        float randomX = Random.Range(center.x - radius, center.x + radius);
+        float randomZ = Random.Range(center.z - radius, center.z + radius);
+        pointsX.Add(randomX);
+
+        while (pointsX.Contains(randomX) || pointsZ.Contains(randomZ))
+        {
+            randomX++;
+            randomZ++;
+        }
+
+        randPos = new Vector3(randomX, center.y + 0.25f, randomZ);
+        return randPos;
+    }
 }
