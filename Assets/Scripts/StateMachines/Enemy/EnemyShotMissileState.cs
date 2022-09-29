@@ -10,8 +10,10 @@ public class EnemyShotMissileState : EnemyBaseState
     Vector3 movementVector = new Vector3(0.25f, 0f ,0f);
     float movementFactor = 1f;
     float period = 0.1f;
+
     bool isParticleSpawned = false;
     bool areMissilesSpawned = false;
+
 
     public EnemyShotMissileState(EnemyStateMachine stateMachine) : base(stateMachine) { }
 
@@ -78,20 +80,21 @@ public class EnemyShotMissileState : EnemyBaseState
 
     Vector3 RandomSpawnPos(Vector3 center, float range)
     {
-        List<float> pointsX = new List<float>();
-        List<float> pointsZ = new List<float>();
+        List<Vector3> positions = new List<Vector3>();
 
-        float randomX = Random.Range(center.x - range, center.x + range);
-        float randomZ = Random.Range(center.z - range, center.z + range);
-        pointsX.Add(randomX);
+        float randomX;
+        float y = center.y + 0.25f;
+        float randomZ;
 
-        while (pointsX.Contains(randomX) || pointsZ.Contains(randomZ))
+        do
         {
-            randomX++;
-            randomZ++;
+            randomX = Random.Range(center.x - range, center.x + range);
+            randomZ = Random.Range(center.z - range, center.z + range);
+            positions.Add(new Vector3(randomX, y, randomZ));
         }
-
-        Vector3 randPos = new Vector3(randomX, center.y + 0.25f, randomZ);
+        while (!positions.Contains(new Vector3(randomX, y, randomZ)));
+        
+        Vector3 randPos = new Vector3((int)randomX, y + 0.25f, (int)randomZ);
         return randPos;
     }
 }
