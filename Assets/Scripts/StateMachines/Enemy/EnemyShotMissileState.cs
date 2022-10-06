@@ -97,4 +97,6 @@ public class EnemyShotMissileState : EnemyBaseState
         Vector3 randPos = new Vector3((int)randomX, y + 0.25f, (int)randomZ);
         return randPos;
     }
+
+
 }
