@@ -7,6 +7,7 @@ public class DamageArea : MonoBehaviour
     private List<Collider> alreadyCollidedWith = new List<Collider>();
     [SerializeField] int damage;
     [SerializeField] GameObject MissileImpactFX;
+    [SerializeField] GameObject Reticle;
     bool isImpact;
 
     private void OnTriggerStay(Collider other)
@@ -16,10 +17,10 @@ public class DamageArea : MonoBehaviour
         if (other.CompareTag("EnemyMissile"))
         {
             Destroy(other.gameObject);
+            Destroy(Reticle);
             GameObject explosion = Instantiate(MissileImpactFX, transform.position, Quaternion.identity);
             explosion.GetComponent<ParticleSystem>().Play();
             isImpact = true;
-
         }
         if(isImpact)
         {
@@ -31,7 +32,6 @@ public class DamageArea : MonoBehaviour
                     health.DealDamage(damage);
                 }
             }
-
         }
     }
 
