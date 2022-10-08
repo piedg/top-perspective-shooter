@@ -83,7 +83,7 @@ public class EnemyShotMissileState : EnemyBaseState
         List<Vector3> positions = new List<Vector3>();
 
         float randomX;
-        float y = center.y + 0.25f;
+        float y = center.y + 0.15f;
         float randomZ;
 
         do
@@ -94,7 +94,7 @@ public class EnemyShotMissileState : EnemyBaseState
         }
         while (!positions.Contains(new Vector3(randomX, y, randomZ)));
         
-        Vector3 randPos = new Vector3((int)randomX, y + 0.25f, (int)randomZ);
+        Vector3 randPos = new Vector3((int)randomX, y, (int)randomZ);
         return randPos;
     }
 
