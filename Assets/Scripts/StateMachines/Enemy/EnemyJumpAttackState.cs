@@ -19,10 +19,12 @@ public class EnemyJumpAttackState : EnemyBaseState
 
     public override void Tick(float deltaTime)
     {
-         MoveForward(deltaTime);
+        MoveForward(deltaTime);
+        stateMachine.JumpAreaDisplay.SetActive(true);
 
         if (IsPlayingAnimation(stateMachine.Animator)) { return; }
-        
+        stateMachine.JumpAreaDisplay.SetActive(false);
+
         stateMachine.SwitchState(new EnemyJumpImpactState(stateMachine));
     }
 

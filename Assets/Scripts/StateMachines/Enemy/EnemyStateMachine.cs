@@ -22,6 +22,8 @@ public class EnemyStateMachine : StateMachine
     [field: SerializeField] public int JumpAttackDamage { get; private set; }
     [field: SerializeField] public float JumpForce { get; private set; }
     [field: SerializeField] public float JumpAttackCooldown { get; private set; }
+    [field: SerializeField] public GameObject JumpAreaDisplay { get; private set; }
+
     [field: SerializeField, Header("Missile Attack Settings")] public float MissileAttackCooldown { get; private set; }
     [field: SerializeField] public Transform MissileSpawnPoint { get; private set; }
     [field: SerializeField] public GameObject MissileFX { get; private set; }
