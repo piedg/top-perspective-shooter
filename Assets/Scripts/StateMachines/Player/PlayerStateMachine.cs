@@ -46,7 +46,7 @@ public class PlayerStateMachine : StateMachine
     IEnumerator TakeDamage()
     {
         Health.SetInvulnerable(true);
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(0.75f);
         Health.SetInvulnerable(false);
     }
 

@@ -16,7 +16,7 @@ public class PlayerDodgeState : PlayerBaseState
     }
     public override void Enter()
     {
-        //stateMachine.Health.SetInvulnerable(true);
+        stateMachine.Health.SetInvulnerable(true);
         remainingDodgeTime = stateMachine.DodgeDuration;
         stateMachine.Animator.CrossFadeInFixedTime(DodgeHash, CrossFadeDuration);
     }
@@ -28,7 +28,7 @@ public class PlayerDodgeState : PlayerBaseState
         if (remainingDodgeTime <= 0f)
         {
             stateMachine.CooldownManager.BeginCooldown(stateMachine.DodgeCooldown.ToString(), stateMachine.DodgeCooldown);
-            //stateMachine.Health.SetInvulnerable(false);
+            stateMachine.Health.SetInvulnerable(false);
             stateMachine.SwitchState(new PlayerFreeLookState(stateMachine));
             return;
         }
