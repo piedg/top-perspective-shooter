@@ -793,6 +793,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
   m_HorizontalAxis: Horizontal
   m_VerticalAxis: Vertical
   m_SubmitButton: Submit
@@ -1129,9 +1130,17 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 363427314136775357, guid: b287de1827cdb214dadc7e38649ee3a0, type: 3}
+      propertyPath: <DodgeForce>k__BackingField
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 363427314136775357, guid: b287de1827cdb214dadc7e38649ee3a0, type: 3}
       propertyPath: <ProjectilePool>k__BackingField
       value: 
       objectReference: {fileID: 1379920755}
+    - target: {fileID: 363427314136775357, guid: b287de1827cdb214dadc7e38649ee3a0, type: 3}
+      propertyPath: <DefaultRotationSpeed>k__BackingField
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 6499994464831390548, guid: b287de1827cdb214dadc7e38649ee3a0, type: 3}
       propertyPath: m_Name
       value: PlayerRig
@@ -1179,6 +1188,10 @@ PrefabInstance:
     - target: {fileID: 6499994464831390551, guid: b287de1827cdb214dadc7e38649ee3a0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6863408530021034696, guid: b287de1827cdb214dadc7e38649ee3a0, type: 3}
+      propertyPath: maxHealth
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b287de1827cdb214dadc7e38649ee3a0, type: 3}
@@ -1238,9 +1251,33 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6555168453601269289, guid: 5cee7b011e3aa004493b72a25bbac12a, type: 3}
+      propertyPath: <JumpForce>k__BackingField
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6555168453601269289, guid: 5cee7b011e3aa004493b72a25bbac12a, type: 3}
+      propertyPath: <MovementSpeed>k__BackingField
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6555168453601269289, guid: 5cee7b011e3aa004493b72a25bbac12a, type: 3}
+      propertyPath: <RotationSpeed>k__BackingField
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6555168453601269289, guid: 5cee7b011e3aa004493b72a25bbac12a, type: 3}
       propertyPath: <JumpAreaDisplay>k__BackingField
       value: 
       objectReference: {fileID: 119348547}
+    - target: {fileID: 6555168453601269289, guid: 5cee7b011e3aa004493b72a25bbac12a, type: 3}
+      propertyPath: <JumpAttackRange>k__BackingField
+      value: 4.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6555168453601269289, guid: 5cee7b011e3aa004493b72a25bbac12a, type: 3}
+      propertyPath: <MissileAttackCooldown>k__BackingField
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6555168453601269293, guid: 5cee7b011e3aa004493b72a25bbac12a, type: 3}
+      propertyPath: maxHealth
+      value: 2500
+      objectReference: {fileID: 0}
     - target: {fileID: 6555168453702667394, guid: 5cee7b011e3aa004493b72a25bbac12a, type: 3}
       propertyPath: m_IsActive
       value: 0

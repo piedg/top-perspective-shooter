@@ -260,7 +260,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dd25c36edf881446a257f557eb02ddf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 25
+  damage: 75
   MissileImpactFX: {fileID: 1981308362232798436, guid: 2d65b34e18d57d14aa2038a0720aea32, type: 3}
   Reticle: {fileID: 856118222826039699}
 --- !u!114 &8564019705334075088

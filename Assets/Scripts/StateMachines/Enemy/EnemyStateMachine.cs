@@ -18,7 +18,7 @@ public class EnemyStateMachine : StateMachine
     [field: SerializeField, Header("Attack Settings")] public Damage AttackPoint { get; private set; }
     [field: SerializeField] public float AttackRange { get; private set; }
     [field: SerializeField] public int AttackDamage { get; private set; }
-    [field: SerializeField, Header("Jump Attack Settings")] public int JumpAttackRange { get; private set; }
+    [field: SerializeField, Header("Jump Attack Settings")] public float JumpAttackRange { get; private set; }
     [field: SerializeField] public int JumpAttackDamage { get; private set; }
     [field: SerializeField] public float JumpForce { get; private set; }
     [field: SerializeField] public float JumpAttackCooldown { get; private set; }
